@@ -5,91 +5,138 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>쇼니 커미션</title>
     <style>
-        /* 1. 기본 레이아웃 */
+        /* 1. 전체 레이아웃 */
         body { background-color: #fffdfb; margin: 0; padding: 20px; display: flex; flex-direction: column; align-items: center; }
         .container { max-width: 800px; width: 100%; font-family: 'Pretendard', sans-serif; color: #334155; }
         img { max-width: 100%; height: auto; display: block; border-radius: 20px; }
 
-        /* 2. 상단 섹션 */
+        /* 2. 상단 로고 및 소개 */
         .main-logo { width: 100%; border-radius: 30px; margin-bottom: 25px; }
-        .intro-box { background: #fff; border: 1px solid #ffebdb; border-radius: 30px; padding: 40px 20px; text-align: center; margin-bottom: 20px; }
-        .intro-text { font-size: 16px; color: #645143; line-height: 1.8; }
+        .intro-box { background: #fff; border: 1px solid #ffebdb; border-radius: 30px; padding: 40px 20px; text-align: center; margin-bottom: 20px; box-shadow: 0 10px 30px rgba(255,165,0,0.03); }
+        .intro-text { font-size: 16px; color: #645143; line-height: 2; font-weight: 500; }
 
-        .event-box { background: #fffaf5; border: 2px solid #ff7f50; border-radius: 25px; padding: 30px 20px; text-align: center; margin-bottom: 40px; position: relative; }
+        /* 3. 이벤트 공지 */
+        .event-box { background: #fffaf5; border: 2px solid #ff9f43; border-radius: 25px; padding: 30px 20px; text-align: center; margin-bottom: 40px; position: relative; }
         .event-badge { position: absolute; top: -15px; left: 50%; transform: translateX(-50%); background: #ff7f50; color: #fff; padding: 5px 15px; border-radius: 20px; font-size: 12px; font-weight: bold; }
-        .event-price { font-size: 20px; font-weight: 800; color: #ff7f50; margin-top: 10px; }
+        .event-text { font-size: 16px; font-weight: 700; color: #a05e2b; margin-bottom: 12px; }
+        .event-price { font-size: 18px; font-weight: 800; color: #ff7f50; }
         .price-old { text-decoration: line-through; color: #d0b8a8; margin-right: 8px; }
 
-        /* 3. 필독사항 (아코디언) */
-        .section-header { font-size: 22px; font-weight: 900; color: #4a3b31; margin: 30px 0 20px; display: flex; align-items: center; gap: 10px; }
+        /* 4. 필독사항 (아코디언) */
+        .header-tag { background: #f3f0ff; color: #8b5cf6; font-size: 10px; padding: 3px 8px; border-radius: 6px; display: inline-block; margin-bottom: 5px; font-weight: bold; }
+        .section-header { font-size: 22px; font-weight: 900; color: #4a3b31; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
+        
         .acc-item { background: #fff; border: 1px solid #ffebdb; border-radius: 15px; margin-bottom: 12px; overflow: hidden; }
         .acc-input { display: none; }
         .acc-header { display: flex; align-items: center; padding: 18px 25px; cursor: pointer; font-weight: 700; color: #4a3b31; }
-        .acc-icon { margin-right: 15px; }
-        .acc-content { max-height: 0; overflow: hidden; transition: 0.3s; background: #fffdfb; }
-        .acc-body { padding: 20px 25px 30px 55px; font-size: 14px; line-height: 1.8; border-top: 1px solid #fff5eb; }
+        .acc-icon { width: 30px; height: 30px; background: #f3f0ff; border-radius: 8px; display: flex; justify-content: center; align-items: center; margin-right: 15px; }
+        .acc-arrow { margin-left: auto; color: #ff9f43; transition: 0.3s; font-size: 12px; }
+        
+        .acc-content { max-height: 0; overflow: hidden; transition: 0.3s ease-out; background: #fffdfb; }
+        .acc-body { padding: 20px 25px 30px 60px; font-size: 14px; color: #645143; line-height: 1.8; border-top: 1px solid #fff5eb; }
         .acc-input:checked ~ .acc-content { max-height: 1000px; }
+        .acc-input:checked ~ .acc-header .acc-arrow { transform: rotate(180deg); }
 
-        /* 4. 개인작 슬라이더 (버튼 색상 수정됨) */
-        .tab-menu { display: flex; justify-content: center; gap: 8px; margin-bottom: 20px; flex-wrap: wrap; }
+        .notice-list { margin: 0; padding: 0; list-style: none; }
+        .notice-list li { position: relative; padding-left: 15px; margin-bottom: 8px; }
+        .notice-list li::before { content: '·'; position: absolute; left: 0; font-weight: bold; color: #ff9f43; }
+
+        /* 5. 개인작 슬라이더 */
+        .tab-menu { display: flex; justify-content: center; gap: 8px; margin: 40px 0 20px; flex-wrap: wrap; }
         .tab-btn { padding: 10px 18px; border: 1px solid #ffebdb; background: #fff; border-radius: 20px; font-size: 13px; font-weight: 700; color: #7f6a5b; cursor: pointer; transition: 0.3s; }
         
-        /* [중요] 눌렀을 때 보라색으로 변하는 스타일 */
-        .tab-btn.active { background: #8b5cf6 !important; color: #fff !important; border-color: #8b5cf6 !important; }
+        /* 버튼 클릭 시 보라색 활성화 */
+        .tab-btn.active { background: #8b5cf6 !important; color: #fff !important; border-color: #8b5cf6 !important; box-shadow: 0 4px 10px rgba(139, 92, 246, 0.2); }
 
-        .slider-wrap { position: relative; width: 100%; background: #fff; border: 1px solid #ffebdb; border-radius: 25px; overflow: hidden; min-height: 300px; }
+        .slider-wrap { position: relative; width: 100%; background: #fff; border: 1px solid #ffebdb; border-radius: 25px; overflow: hidden; }
         .slider-track { display: flex; transition: transform 0.4s; align-items: center; }
         .slide-img { min-width: 100%; padding: 10px; box-sizing: border-box; }
         
         .nav-btn { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(255,255,255,0.8); border: none; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; color: #ff7f50; font-weight: bold; z-index: 5; }
-        .prev { left: 10px; } .next { right: 10px; }
+        .prev { left: 15px; } .next { right: 15px; }
 
-        .ready-box { width: 100%; padding: 100px 0; text-align: center; color: #8b5cf6; font-weight: bold; font-size: 18px; }
+        .ready-box { width: 100%; padding: 100px 0; text-align: center; color: #8b5cf6; font-weight: bold; font-size: 18px; background: #f3f0ff; border-radius: 25px; }
     </style>
 </head>
 <body>
 
 <div class="container">
     <img src="https://github.com/sionii-wave/artmug/blob/main/KakaoTalk_20260404_030131353.png?raw=true" class="main-logo">
-    
     <div class="intro-box">
-        <div class="intro-text">안녕하세요 작가 쇼니입니다. 최선을 다하겠습니다. ♡</div>
+        <div class="intro-text">
+            안녕하세요 작가 쇼니입니다<br>
+            의뢰자님의 취향에 딱 맞는 아바타를 만들 수 있도록 최선을 다 하겠습니다.<br>
+            편하게 문의 주세요. ♡◟( ˘ ³˘)◞ ♡
+        </div>
     </div>
 
     <div class="event-box">
         <div class="event-badge">EVENT</div>
-        <div>데뷔 패키지 할인 이벤트 중!</div>
-        <div class="event-price"><span class="price-old">300,000원</span> 180,000원</div>
+        <div class="event-text">
+            포트폴리오 작업물 위해 이벤트 기간 동안 데뷔패키지 할인이 적용 됩니다<br>
+            ᰔ많은 문의 부탁드립니다.ᰔ
+        </div>
+        <div class="event-price">
+            데뷔패키지 <span class="price-old">300,000원</span> > 180,000원
+        </div>
     </div>
 
+    <span class="header-tag">MUST READ</span>
     <div class="section-header">💜 필독사항</div>
-    
+
     <div class="acc-item">
-        <input type="checkbox" id="n1" class="acc-input">
-        <label for="n1" class="acc-header"><span class="acc-icon">💜</span> 작업 관련 안내</label>
-        <div class="acc-content"><div class="acc-body">문의 먼저 부탁드립니다. 작업 기간은 7~14일 소요됩니다.</div></div>
-    </div>
-    
-    <div class="acc-item">
-        <input type="checkbox" id="n2" class="acc-input">
-        <label for="n2" class="acc-header"><span class="acc-icon">💜</span> BOOTH 관련 안내</label>
-        <div class="acc-content"><div class="acc-body">저작권 확인 필수! 기프트 기능을 이용해 파츠를 전달해주세요.</div></div>
+        <input type="checkbox" id="notice1" class="acc-input">
+        <label for="notice1" class="acc-header"><div class="acc-icon">💜</div> 작업 관련 <span class="acc-arrow">▼</span></label>
+        <div class="acc-content"><div class="acc-body"><ul class="notice-list">
+            <li>결제 전 꼭 <b>문의 먼저</b> 부탁드립니다. 모든 작업은 입금 순으로 진행됩니다. (개인작 동일 적용)</li>
+            <li>작업 기간은 <b>최소 7일~14일</b>이 소요됩니다.</li>
+            <li>컨펌 과정 중 사전 고지 없이 24시간 내에 답변이 없을 경우 작업 순서가 변경될 수 있습니다.</li>
+            <li>모든 작업물은 포트폴리오로 사용될 수 있습니다.</li>
+            <li>모든 작업물의 보관 기간은 1개월입니다. 추후 작업이 필요 시 유니티패키지를 구매해 주세요.</li>
+            <li>과한 컨셉(고어, 노출 등)의 작업물 또는 작가 역량 부족으로 판단될 시 작업이 거절될 수 있습니다.</li>
+            <li>작업 진행 상황에 따른 환불 규정이 상이하니 환불 규정 꼭 확인해 주세요.</li>
+        </ul></div></div>
     </div>
 
-    <div class="section-header">💜 개인작</div>
-    
-    <div class="tab-menu">
-        <button class="tab-btn active" onclick="changeTab('all', this)">전체</button>
-        <button class="tab-btn" onclick="changeTab('shinano', this)">시나노개인작</button>
-        <button class="tab-btn" onclick="changeTab('airi', this)">아이리개인작</button>
-        <button class="tab-btn" onclick="changeTab('miltina', this)">밀티나개인작</button>
-        <button class="tab-btn" onclick="changeTab('ready', this)">준비중</button>
+    <div class="acc-item">
+        <input type="checkbox" id="notice2" class="acc-input">
+        <label for="notice2" class="acc-header"><div class="acc-icon">💜</div> BOOTH 관련 <span class="acc-arrow">▼</span></label>
+        <div class="acc-content"><div class="acc-body"><ul class="notice-list">
+            <li>신청 전 사용하고자 하는 아바타 및 파츠의 <b>저작권 및 방송 송출 규정</b> 확인해 주세요.</li>
+            <li>2차 가공, 배포, 저작권 및 방송 송출이 허용된 아이템만 작업 가능합니다.</li>
+            <li>부스 아이템은 <b>의뢰자와 작가 양측이 모두 보유</b>해야 합니다.</li>
+            <li>작가가 보유하지 않은 파츠는 부스의 <b>'기프트'기능</b>을 통해 전달해 주셔야 합니다.</li>
+            <li>보내주신 기프트는 수령 이후 환불 불가합니다.</li>
+        </ul></div></div>
     </div>
 
-    <div class="slider-wrap">
-        <button class="nav-btn prev" onclick="move(-1)">❮</button>
-        <div class="slider-track" id="track"></div>
-        <button class="nav-btn next" onclick="move(1)">❯</button>
+    <div class="acc-item">
+        <input type="checkbox" id="notice3" class="acc-input">
+        <label for="notice3" class="acc-header"><div class="acc-icon">💜</div> 작업물 관련 <span class="acc-arrow">▼</span></label>
+        <div class="acc-content"><div class="acc-body"><ul class="notice-list">
+            <li>유니티패키지를 추가하지 않은 경우 <b>VSF파일</b>을 전달 드립니다.</li>
+            <li>유니티패키지는 아바타와 관련된 것만 추출하며 실시간 그림자와 FBX는 포함되지 않습니다.</li>
+            <li>타 작가님께 추가 작업을 맡기실 경우 사전에 말씀해 주시고 작업 부탁드립니다.</li>
+        </ul></div></div>
+    </div>
+
+    <div style="margin-top: 40px;">
+        <span class="header-tag">MUST WORK</span>
+        <div class="section-header">💜 개인작</div>
+        
+        <div class="tab-menu">
+            <button class="tab-btn active" onclick="changeTab('all', this)">전체</button>
+            <button class="tab-btn" onclick="changeTab('shinano', this)">시나노개인작</button>
+            <button class="tab-btn" onclick="changeTab('airi', this)">아이리개인작</button>
+            <button class="tab-btn" onclick="changeTab('miltina', this)">밀티나개인작</button>
+            <button class="tab-btn" onclick="changeTab('ready', this)">준비중</button>
+        </div>
+
+        <div class="slider-wrap">
+            <button class="nav-btn prev" onclick="move(-1)">❮</button>
+            <div class="slider-track" id="track"></div>
+            <button class="nav-btn next" onclick="move(1)">❯</button>
+        </div>
     </div>
 </div>
 
@@ -105,7 +152,7 @@
     let idx = 0;
 
     function changeTab(type, btn) {
-        // 모든 버튼 보라색 제거, 클릭한 버튼만 보라색 추가
+        // 모든 버튼에서 active 제거 후 클릭한 버튼에 추가 (보라색 활성화)
         document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
 
@@ -113,17 +160,19 @@
         track.innerHTML = "";
         idx = 0;
 
-        // 이미지 데이터 설정 (밀티나도 이미지가 없으면 준비중으로 뜸)
+        // 이미지 데이터 구성
         if (type === 'all') {
             currentImgs = [...data.shinano, ...data.airi];
         } else {
             currentImgs = data[type];
         }
 
+        // 이미지가 없을 때 (밀티나, 준비중)
         if (currentImgs.length === 0) {
             track.innerHTML = `<div class="ready-box">준비중입니다... ᰔ</div>`;
             document.querySelectorAll('.nav-btn').forEach(n => n.style.display = 'none');
         } else {
+            // 이미지가 있을 때
             currentImgs.forEach(src => {
                 const div = document.createElement('div');
                 div.className = 'slide-img';
@@ -141,7 +190,7 @@
         document.getElementById('track').style.transform = `translateX(-${idx * 100}%)`;
     }
 
-    // 초기 실행
+    // 페이지 로딩 시 '전체' 탭 자동 클릭
     window.onload = () => document.querySelector('.tab-btn').click();
 </script>
 
