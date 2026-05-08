@@ -12,10 +12,9 @@
         /* 2. 상단 로고 이미지 */
         .main-logo { width: 100%; border-radius: 30px; margin-bottom: 25px; display: block; }
 
-        /* 3. 작가 소개 섹션 */
+        /* 3. 작가 소개 섹션 (타이틀 제거 버전) */
         .intro-box { background: #fff; border: 1px solid #ffebdb; border-radius: 30px; padding: 40px 20px; text-align: center; margin-bottom: 20px; box-shadow: 0 10px 30px rgba(255,165,0,0.03); }
-        .intro-title { font-size: 24px; font-weight: 900; color: #ff7f50; margin-bottom: 15px; }
-        .intro-text { font-size: 15px; color: #645143; line-height: 1.8; word-break: keep-all; }
+        .intro-text { font-size: 16px; color: #645143; line-height: 2; word-break: keep-all; font-weight: 500; }
 
         /* 4. 단독 이벤트 공지 섹션 */
         .event-box { background: #fffaf5; border: 2px solid #ff9f43; border-radius: 25px; padding: 30px 20px; text-align: center; margin-bottom: 40px; position: relative; }
@@ -24,16 +23,15 @@
         .price-old { text-decoration: line-through; color: #d0b8a8; font-size: 15px; margin-right: 8px; }
         .event-badge { position: absolute; top: -15px; left: 50%; transform: translateX(-50%); background: #ff7f50; color: #fff; padding: 5px 15px; border-radius: 20px; font-size: 12px; font-weight: bold; }
 
-        /* 5. 필독사항 (아코디언 형태) */
-        .section-header { font-size: 20px; font-weight: 800; color: #4a3b31; margin-bottom: 20px; display: flex; align-items: center; }
-        .section-header::before { content: ''; width: 4px; height: 20px; background: #ff9f43; margin-right: 12px; border-radius: 2px; }
-
+        /* 5. 필독사항 섹션 (막대기 대신 새로운 디자인) */
+        .section-header { font-size: 22px; font-weight: 900; color: #4a3b31; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
+        .header-tag { background: #f3f0ff; color: #8b5cf6; font-size: 10px; padding: 3px 8px; border-radius: 6px; letter-spacing: 1px; margin-bottom: 4px; display: inline-block; }
+        
         .acc-item { background: #fff; border: 1px solid #ffebdb; border-radius: 15px; margin-bottom: 12px; overflow: hidden; transition: 0.3s; }
         .acc-item:hover { border-color: #ff9f43; }
         .acc-input { display: none; }
         .acc-header { display: flex; align-items: center; padding: 18px 25px; cursor: pointer; font-weight: 700; font-size: 15px; color: #4a3b31; background: #fff; }
         
-        /* 보라색 하트 전용 아이콘 스타일 */
         .acc-icon { width: 30px; height: 30px; background: #f3f0ff; border-radius: 8px; display: flex; justify-content: center; align-items: center; margin-right: 15px; font-size: 14px; }
         .acc-arrow { margin-left: auto; color: #ff9f43; transition: 0.3s; font-size: 12px; }
         
@@ -43,7 +41,6 @@
         .acc-input:checked ~ .acc-header { background: #fffaf5; color: #ff7f50; }
         .acc-input:checked ~ .acc-header .acc-arrow { transform: rotate(180deg); }
 
-        /* 리스트 스타일 */
         .notice-list { margin: 0; padding: 0; list-style: none; }
         .notice-list li { position: relative; padding-left: 15px; margin-bottom: 8px; }
         .notice-list li::before { content: '·'; position: absolute; left: 0; font-weight: bold; color: #ff9f43; }
@@ -55,11 +52,10 @@
     <img src="https://github.com/sionii-wave/artmug/blob/main/KakaoTalk_20260404_030131353.png?raw=true" class="main-logo">
 
     <div class="intro-box">
-        <div class="intro-title">작가 쇼니</div>
         <div class="intro-text">
             안녕하세요 작가 쇼니입니다.<br>
             의뢰자님의 취향에 딱 맞는 아바타를 만들 수 있도록 최선을 다 하겠습니다.<br>
-            편하게 문의 주세요. ♡◟( ˘ ³˘)◞ ♡
+            편하게 문의 주세요. ৎ₍ ^. .^₎ᜑ𖹭.ᐟ
         </div>
     </div>
 
@@ -74,7 +70,10 @@
         </div>
     </div>
 
-    <div class="section-header">필독사항</div>
+    <div>
+        <span class="header-tag">MUST READ</span>
+        <div class="section-header">💜 필독사항</div>
+    </div>
 
     <div class="acc-item">
         <input type="checkbox" id="notice1" class="acc-input">
