@@ -5,27 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>쇼니 커미션</title>
     <style>
-        /* 1. 기본 레이아웃 */
         body { background-color: #fffdfb; margin: 0; padding: 0; }
         .container { max-width: 800px; margin: 0 auto; font-family: 'Pretendard', sans-serif; color: #334155; padding: 20px; box-sizing: border-box; }
-        img { max-width: 100%; height: auto; display: block; }
+        img { max-width: 100%; height: auto; display: block; border-radius: 20px; }
 
-        /* 2. 상단 섹션 */
-        .main-logo { border-radius: 30px; margin-bottom: 25px; width: 100%; }
+        /* 소개 및 이벤트 */
+        .main-logo { width: 100%; border-radius: 30px; margin-bottom: 25px; }
         .intro-box { background: #fff; border: 1px solid #ffebdb; border-radius: 30px; padding: 40px 20px; text-align: center; margin-bottom: 20px; box-shadow: 0 10px 30px rgba(255,165,0,0.03); }
         .intro-text { font-size: 16px; color: #645143; line-height: 2; font-weight: 500; }
-
         .event-box { background: #fffaf5; border: 2px solid #ff9f43; border-radius: 25px; padding: 30px 20px; text-align: center; margin-bottom: 40px; position: relative; }
         .event-badge { position: absolute; top: -15px; left: 50%; transform: translateX(-50%); background: #ff7f50; color: #fff; padding: 5px 15px; border-radius: 20px; font-size: 12px; font-weight: bold; }
         .event-text { font-size: 16px; font-weight: 700; color: #a05e2b; margin-bottom: 12px; }
         .event-price { font-size: 18px; font-weight: 800; color: #ff7f50; }
         .price-old { text-decoration: line-through; color: #d0b8a8; margin-right: 8px; }
 
-        /* 3. 공통 헤더 디자인 (보라색 하트) */
+        /* 헤더 디자인 */
         .header-tag { background: #f3f0ff; color: #8b5cf6; font-size: 10px; padding: 3px 8px; border-radius: 6px; letter-spacing: 1px; display: inline-block; margin-bottom: 5px; }
         .section-header { font-size: 20px; font-weight: 900; color: #4a3b31; margin-bottom: 20px; display: flex; align-items: center; }
 
-        /* 4. 필독사항 (아코디언) */
+        /* 필독사항 아코디언 */
         .acc-item { background: #fff; border: 1px solid #ffebdb; border-radius: 15px; margin-bottom: 12px; overflow: hidden; }
         .acc-input { display: none; }
         .acc-header { display: flex; align-items: center; padding: 18px 25px; cursor: pointer; font-weight: 700; font-size: 15px; background: #fff; }
@@ -39,21 +37,15 @@
         .notice-list li { position: relative; padding-left: 15px; margin-bottom: 8px; }
         .notice-list li::before { content: '·'; position: absolute; left: 0; color: #ff9f43; font-weight: bold; }
 
-        /* 5. 개인작 섹션 (탭 & 슬라이더) */
+        /* 개인작 슬라이더 */
         .tab-menu { display: flex; justify-content: center; gap: 8px; margin-bottom: 20px; flex-wrap: wrap; }
-        .tab-btn { padding: 8px 16px; border: 1px solid #ffebdb; background: #fff; border-radius: 20px; font-size: 13px; font-weight: 700; color: #7f6a5b; cursor: pointer; transition: 0.2s; }
+        .tab-btn { padding: 8px 16px; border: 1px solid #ffebdb; background: #fff; border-radius: 20px; font-size: 13px; font-weight: 700; color: #7f6a5b; cursor: pointer; }
         .tab-btn.active { background: #8b5cf6; color: #fff; border-color: #8b5cf6; }
-
         .slider-wrap { position: relative; width: 100%; background: #fff; border: 1px solid #ffebdb; border-radius: 25px; overflow: hidden; }
         .slider-track { display: flex; transition: transform 0.4s ease-in-out; }
-        .slide-img { min-width: 100%; box-sizing: border-box; display: flex; justify-content: center; align-items: center; }
-        .slide-img img { width: 100%; border-radius: 25px; }
-
+        .slide-img { min-width: 100%; box-sizing: border-box; }
         .nav-btn { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(255,255,255,0.8); border: none; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; color: #ff7f50; font-weight: 900; z-index: 5; }
-        .prev { left: 10px; }
-        .next { right: 10px; }
-
-        /* 준비중 문구 스타일 */
+        .prev { left: 10px; } .next { right: 10px; }
         .ready-box { width: 100%; padding: 80px 0; text-align: center; background: #f3f0ff; color: #8b5cf6; font-weight: 900; font-size: 20px; border-radius: 25px; }
     </style>
 </head>
@@ -63,11 +55,7 @@
     <img src="https://github.com/sionii-wave/artmug/blob/main/KakaoTalk_20260404_030131353.png?raw=true" class="main-logo">
 
     <div class="intro-box">
-        <div class="intro-text">
-            안녕하세요 작가 쇼니입니다<br>
-            의뢰자님의 취향에 딱 맞는 아바타를 만들 수 있도록 최선을 다 하겠습니다.<br>
-            편하게 문의 주세요. ♡◟( ˘ ³˘)◞ ♡
-        </div>
+        <div class="intro-text">안녕하세요 작가 쇼니입니다<br>의뢰자님의 취향에 딱 맞는 아바타를 만들 수 있도록 최선을 다 하겠습니다.<br>편하게 문의 주세요. ♡◟( ˘ ³˘)◞ ♡</div>
     </div>
 
     <div class="event-box">
@@ -82,93 +70,91 @@
     <div class="acc-item">
         <input type="checkbox" id="c1" class="acc-input">
         <label for="c1" class="acc-header"><div class="acc-icon">💜</div> 작업 관련 <span class="acc-arrow">▼</span></label>
-        <div class="acc-content"><div class="acc-body"><ul class="notice-list"><li>결제 전 꼭 문의 먼저 부탁드립니다. 모든 작업은 입금 순으로 진행 됩니다.</li><li>작업 기간은 최소 7일~14일이 소요됩니다.</li><li>컨펌 답변이 24시간 내 없을 경우 작업 순서가 변경될 수 있습니다.</li></ul></div></div>
+        <div class="acc-content"><div class="acc-body"><ul class="notice-list">
+            <li>결제 전 꼭 문의 먼저 부탁드립니다. 모든 작업은 입금 순으로 진행 됩니다. (개인작 동일 적용)</li>
+            <li>작업 기간은 최소 7일~14일이 소요됩니다.</li>
+            <li>컨펌 과정 중 사전 고지 없이 24시간 내에 답변이 없을 경우 작업 순서가 변경이 될 수 있습니다.</li>
+            <li>모든 작업물은 포트폴리오로 사용 될 수 있습니다. 사용을 원치 않으실 경우 포트폴리오 비공개 옵션을 선택해 주세요.</li>
+            <li>모든 작업물의 보관 기간은 1개월입니다. 추후 작업이 필요 시 유니티패키지를 구매해 주세요.</li>
+            <li>과한 컨셉(고어, 노출 등)의 작업물 또는 작가 역량 부족으로 판단될 시 작업이 거절될 수 있습니다.</li>
+            <li>작업 진행 상황에 따른 환불 규정이 상이하니 환불 규정 꼭 확인해 주세요.</li>
+        </ul></div></div>
     </div>
+
+    <div class="acc-item">
+        <input type="checkbox" id="c2" class="acc-input">
+        <label for="c2" class="acc-header"><div class="acc-icon">💜</div> BOOTH 관련 <span class="acc-arrow">▼</span></label>
+        <div class="acc-content"><div class="acc-body"><ul class="notice-list">
+            <li>신청 전 사용하고자 하는 아바타 및 기타 아이템들의 저작권 및 방송 송출 규정 확인해 주세요.</li>
+            <li>2차 가공, 배포, 저작권 및 방송 송출이 허용된 아이템만 작업 가능합니다.</li>
+            <li>저작권 문제 발생 시 작가는 책임지지 않으며 해당 사유로 작업 후 환불은 불가합니다.</li>
+            <li>아바타에 사용되는 booth 아이템은 의뢰자와 작가 양측이 모두 보유해야 합니다.</li>
+            <li>작가가 보유하지 않은 아바타나 파츠를 사용할 경우 부스의 '기프트'기능을 통해 전달해 주셔야 합니다.</li>
+            <li>기프트 보내시는 아바타와 아이템의 대응 여부, 방송 사용 가능 여부 등을 꼭 확인 부탁드립니다.</li>
+            <li>보내주신 기프트는 수령 이후 환불 불가합니다.</li>
+        </ul></div></div>
+    </div>
+
+    <div class="acc-item">
+        <input type="checkbox" id="c3" class="acc-input">
+        <label for="c3" class="acc-header"><div class="acc-icon">💜</div> 작업물 관련 <span class="acc-arrow">▼</span></label>
+        <div class="acc-content"><div class="acc-body"><ul class="notice-list">
+            <li>유니티패키지를 추가하지 않은 경우 VSF파일을 전달 드립니다.</li>
+            <li>유니티패키지는 아바타와 관련 된 것만 추출하며 실시간그림자와 FBX는 포함되지 않습니다.</li>
+            <li>타작가님께 추가 작업을 맡기실 경우 사전에 말씀해 주시고 작업 부탁드립니다.</li>
+        </ul></div></div>
+    </div>
+
     <div style="margin-top: 40px;">
         <span class="header-tag">MUST WORK</span>
         <div class="section-header">💜 개인작</div>
-        
-        <div class="tab-menu">
-            <button class="tab-btn active" onclick="showTab('all')">전체</button>
-            <button class="tab-btn" onclick="showTab('shinano')">시나노</button>
-            <button class="tab-btn" onclick="showTab('airi')">아이리</button>
-            <button class="tab-btn" onclick="showTab('miltina')">밀티나</button>
-            <button class="tab-btn" onclick="showTab('ready')">준비중</button>
+        <div class="tab-menu" id="tabMenu">
+            <button class="tab-btn active" onclick="updateSlider('all')">전체</button>
+            <button class="tab-btn" onclick="updateSlider('shinano')">시나노개인작</button>
+            <button class="tab-btn" onclick="updateSlider('airi')">아이리개인작</button>
+            <button class="tab-btn" onclick="updateSlider('miltina')">밀티나개인작</button>
+            <button class="tab-btn" onclick="updateSlider('ready')">준비중</button>
         </div>
-
         <div class="slider-wrap">
-            <button class="nav-btn prev" onclick="changeSlide(-1)">❮</button>
-            <div class="slider-track" id="sliderTrack">
-                </div>
-            <button class="nav-btn next" onclick="changeSlide(1)">❯</button>
+            <button class="nav-btn prev" onclick="moveSlide(-1)">❮</button>
+            <div class="slider-track" id="sliderTrack"></div>
+            <button class="nav-btn next" onclick="moveSlide(1)">❯</button>
         </div>
     </div>
 </div>
 
 <script>
-    // 1. 이미지 데이터 (여기에 이미지 주소를 넣어주세요)
     const images = {
-        shinano: ["시나노_이미지1_주소", "시나노_이미지2_주소"],
-        airi: ["아이리_이미지1_주소"],
-        miltina: ["밀티나_이미지1_주소"],
-        ready: [] // 준비중은 비워둡니다
+        shinano: ["시나노1_주소", "시나노2_주소"],
+        airi: ["아이리1_주소"],
+        miltina: ["밀티나1_주소"],
+        ready: []
     };
-
-    let currentImgs = [];
-    let currentIdx = 0;
-
-    // 2. 탭 전환 기능
-    function showTab(cat) {
-        // 버튼 활성화 스타일 변경
-        document.querySelectorAll('.tab-btn').forEach(btn => {
-            btn.classList.remove('active');
-            if(btn.innerText.toLowerCase().includes(cat === 'all' ? '전체' : cat)) btn.classList.add('active');
-        });
-
+    let currentSet = []; let idx = 0;
+    function updateSlider(cat) {
         const track = document.getElementById('sliderTrack');
-        track.innerHTML = ""; // 기존 슬라이드 삭제
-        currentIdx = 0;
-
-        if (cat === 'ready') {
+        track.innerHTML = ""; idx = 0;
+        document.querySelectorAll('.tab-btn').forEach(b => {
+            b.classList.toggle('active', b.innerText.includes(cat === 'all' ? '전체' : cat.substring(0,3)));
+        });
+        if(cat === 'ready') {
             track.innerHTML = `<div class="ready-box">준비중입니다...ᰔ</div>`;
-            document.querySelectorAll('.nav-btn').forEach(b => b.style.display = 'none');
+            document.querySelectorAll('.nav-btn').forEach(n => n.style.display = 'none');
             return;
         }
-
-        // 이미지 데이터 합치기
-        if (cat === 'all') {
-            currentImgs = [...images.shinano, ...images.airi, ...images.miltina];
-        } else {
-            currentImgs = images[cat];
-        }
-
-        // 슬라이드 생성
-        currentImgs.forEach(src => {
-            const div = document.createElement('div');
-            div.className = 'slide-img';
-            div.innerHTML = `<img src="${src}">`;
-            track.appendChild(div);
+        currentSet = cat === 'all' ? [...images.shinano, ...images.airi, ...images.miltina] : images[cat];
+        currentSet.forEach(s => {
+            const d = document.createElement('div'); d.className='slide-img';
+            d.innerHTML = `<img src="${s}">`; track.appendChild(d);
         });
-
-        // 화살표 표시 제어
-        document.querySelectorAll('.nav-btn').forEach(b => b.style.display = currentImgs.length > 1 ? 'block' : 'none');
-        updatePos();
+        document.querySelectorAll('.nav-btn').forEach(n => n.style.display = currentSet.length > 1 ? 'block' : 'none');
+        track.style.transform = `translateX(0)`;
     }
-
-    // 3. 슬라이드 이동 기능
-    function changeSlide(n) {
-        currentIdx = (currentIdx + n + currentImgs.length) % currentImgs.length;
-        updatePos();
+    function moveSlide(n) {
+        idx = (idx + n + currentSet.length) % currentSet.length;
+        document.getElementById('sliderTrack').style.transform = `translateX(-${idx*100}%)`;
     }
-
-    function updatePos() {
-        const track = document.getElementById('sliderTrack');
-        track.style.transform = `translateX(-${currentIdx * 100}%)`;
-    }
-
-    // 초기 실행 (전체 보기)
-    showTab('all');
+    updateSlider('all');
 </script>
-
 </body>
 </html>
