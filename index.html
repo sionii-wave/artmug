@@ -23,19 +23,27 @@
         .header-tag { background: #f3f0ff; color: #8b5cf6; font-size: 10px; padding: 3px 8px; border-radius: 6px; letter-spacing: 1px; display: inline-block; margin-bottom: 5px; }
         .section-header { font-size: 20px; font-weight: 900; color: #4a3b31; margin-bottom: 20px; display: flex; align-items: center; }
 
-        /* 필독사항 아코디언 */
-        .acc-item { background: #fff; border: 1px solid #ffebdb; border-radius: 15px; margin-bottom: 12px; overflow: hidden; }
+        /* 5. 필독사항 섹션 (막대기 대신 새로운 디자인) */
+        .section-header { font-size: 22px; font-weight: 900; color: #4a3b31; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
+        .header-tag { background: #f3f0ff; color: #8b5cf6; font-size: 10px; padding: 3px 8px; border-radius: 6px; letter-spacing: 1px; margin-bottom: 4px; display: inline-block; }
+        
+        .acc-item { background: #fff; border: 1px solid #ffebdb; border-radius: 15px; margin-bottom: 12px; overflow: hidden; transition: 0.3s; }
+        .acc-item:hover { border-color: #ff9f43; }
         .acc-input { display: none; }
-        .acc-header { display: flex; align-items: center; padding: 18px 25px; cursor: pointer; font-weight: 700; font-size: 15px; background: #fff; }
-        .acc-icon { width: 30px; height: 30px; background: #f3f0ff; border-radius: 8px; display: flex; justify-content: center; align-items: center; margin-right: 15px; }
+        .acc-header { display: flex; align-items: center; padding: 18px 25px; cursor: pointer; font-weight: 700; font-size: 15px; color: #4a3b31; background: #fff; }
+        
+        .acc-icon { width: 30px; height: 30px; background: #f3f0ff; border-radius: 8px; display: flex; justify-content: center; align-items: center; margin-right: 15px; font-size: 14px; }
         .acc-arrow { margin-left: auto; color: #ff9f43; transition: 0.3s; font-size: 12px; }
-        .acc-content { max-height: 0; overflow: hidden; transition: 0.3s ease-out; }
+        
+        .acc-content { max-height: 0; overflow: hidden; transition: 0.3s ease-out; background: #fffdfb; }
         .acc-body { padding: 20px 25px 30px 65px; font-size: 14px; color: #645143; line-height: 1.8; border-top: 1px solid #fff5eb; }
         .acc-input:checked ~ .acc-content { max-height: 1000px; }
+        .acc-input:checked ~ .acc-header { background: #fffaf5; color: #ff7f50; }
         .acc-input:checked ~ .acc-header .acc-arrow { transform: rotate(180deg); }
+
         .notice-list { margin: 0; padding: 0; list-style: none; }
         .notice-list li { position: relative; padding-left: 15px; margin-bottom: 8px; }
-        .notice-list li::before { content: '·'; position: absolute; left: 0; color: #ff9f43; font-weight: bold; }
+        .notice-list li::before { content: '·'; position: absolute; left: 0; font-weight: bold; color: #ff9f43; }
 
         /* 개인작 슬라이더 */
         .tab-menu { display: flex; justify-content: center; gap: 8px; margin-bottom: 20px; flex-wrap: wrap; }
