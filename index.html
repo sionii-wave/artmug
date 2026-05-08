@@ -1,0 +1,281 @@
+<style>
+    /* 1. 전체 설정 */
+    .artmug-full-container { max-width: 850px; margin: 0 auto; font-family: 'Pretendard', sans-serif; color: #334155; line-height: 1.6; background-color: #fcfdfe; padding: 20px; }
+    
+    /* 2. 최상단 프로필 (image_71229c.png 디자인 반영) */
+    .profile-card { background: #fff; border: 1px solid #e2e8f0; border-radius: 40px; padding: 40px 20px; text-align: center; margin-bottom: 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.02); }
+    .profile-avatar { width: 100px; height: 100px; border-radius: 25px; margin-bottom: 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+    .profile-name { font-size: 28px; font-weight: 900; color: #2d3e50; margin: 0 0 10px 0; }
+    .profile-desc { font-size: 14px; color: #64748b; margin-bottom: 25px; }
+    .profile-tags { display: flex; justify-content: center; gap: 8px; flex-wrap: wrap; }
+    .tag-item { padding: 6px 18px; background: #fff; color: #3b82f6; border-radius: 20px; font-size: 13px; font-weight: bold; border: 1px solid #dbeafe; box-shadow: 0 2px 5px rgba(59,130,246,0.1); }
+
+    /* 로고 이미지 */
+    .main-logo-img { width: 100%; border-radius: 30px; margin-bottom: 40px; }
+
+    /* 3. 공지사항 (image_7144bc.png 디자인 반영) */
+    .section-box { background: #fff; border: 1px solid #e2e8f0; border-radius: 30px; padding: 35px; margin-bottom: 40px; }
+    .section-header { font-size: 20px; font-weight: 800; color: #2d3e50; margin-bottom: 25px; display: flex; align-items: center; }
+    .section-header::before { content: ''; width: 4px; height: 20px; background: #3b82f6; margin-right: 12px; border-radius: 2px; }
+    
+    .notice-info-box { background: #f0f7ff; border: 1px dashed #3b82f6; border-radius: 15px; padding: 18px; text-align: center; font-size: 14px; color: #1e3a8a; margin-bottom: 25px; }
+    
+    .acc-input { display: none; }
+    .acc-item { background: #fff; border: 1px solid #eef2f7; border-radius: 15px; margin-bottom: 10px; overflow: hidden; }
+    .acc-header { display: flex; align-items: center; padding: 18px 20px; cursor: pointer; font-weight: bold; font-size: 15px; background: #fff; transition: 0.2s; }
+    .acc-header:hover { background: #f8fafc; }
+    .acc-icon { width: 30px; height: 30px; background: #f0f7ff; border-radius: 8px; display: flex; justify-content: center; align-items: center; margin-right: 15px; font-size: 16px; }
+    .acc-arrow { margin-left: auto; width: 20px; height: 20px; background: #eef2f7; border-radius: 5px; text-align: center; line-height: 20px; font-size: 10px; color: #3b82f6; }
+    .acc-content { max-height: 0; overflow: hidden; transition: 0.3s ease-out; }
+    .acc-body { padding: 20px 20px 25px 65px; font-size: 14px; color: #64748b; line-height: 1.8; border-top: 1px solid #f8fafc; }
+    .acc-input:checked ~ .acc-content { max-height: 600px; }
+    .acc-input:checked ~ .acc-header { background: #f8fafc; color: #3b82f6; }
+
+    /* 4. 포트폴리오 슬라이더 (image_71353b.jpg 디자인 반영) */
+    .tab-input { display: none; }
+    .tab-nav { display: flex; gap: 10px; margin-bottom: 25px; }
+    .tab-label { padding: 10px 22px; background: #fff; border: 1px solid #e2e8f0; border-radius: 25px; font-size: 14px; font-weight: bold; cursor: pointer; color: #94a3b8; transition: 0.3s; }
+    
+    .pf-viewer { border-radius: 20px; overflow: hidden; background: #f8fafc; border: 1px solid #eef2f7; position: relative; }
+    .pf-img { display: none; width: 100%; }
+    .pf-img img { width: 100%; display: block; }
+
+    #t1:checked ~ .tab-nav label[for="t1"], #t2:checked ~ .tab-nav label[for="t2"], #t3:checked ~ .tab-nav label[for="t3"] { background: #3b82f6; color: #fff; border-color: #3b82f6; box-shadow: 0 4px 10px rgba(59,130,246,0.3); }
+    #t1:checked ~ .pf-viewer #c1, #t2:checked ~ .pf-viewer #c2, #t3:checked ~ .pf-viewer #c3 { display: block; }
+
+    /* 5. 정밀 견적 계산기 (image_713d78.png & image_713cfc.png 디자인 합체) */
+    .calc-box { background: #fff; border: 1px solid #e2e8f0; border-radius: 30px; overflow: hidden; box-shadow: 0 10px 40px rgba(0,0,0,0.03); }
+    
+    /* 단계 바 (Progress Bar) */
+    .progress-bar { display: flex; justify-content: space-between; padding: 30px 40px; background: #fcfdfe; border-bottom: 1px solid #f1f5f9; position: relative; }
+    .progress-bar::before { content: ''; position: absolute; top: 42px; left: 60px; right: 60px; height: 2px; background: #e2e8f0; z-index: 1; }
+    .step { position: relative; z-index: 2; text-align: center; width: 60px; }
+    .step-num { width: 26px; height: 26px; line-height: 26px; background: #fff; border: 2px solid #e2e8f0; border-radius: 50%; display: block; margin: 0 auto 8px; font-size: 12px; font-weight: bold; color: #cbd5e1; }
+    .step-txt { font-size: 11px; color: #cbd5e1; font-weight: bold; }
+    
+    .step.active .step-num { background: #3b82f6; border-color: #3b82f6; color: #fff; box-shadow: 0 4px 10px rgba(59,130,246,0.3); }
+    .step.active .step-txt { color: #3b82f6; }
+
+    /* 신청양식 입력창 */
+    .calc-page { display: none; padding: 40px; }
+    .calc-page.active { display: block; }
+    .input-label { font-size: 14px; font-weight: bold; color: #334155; margin-bottom: 10px; display: block; }
+    .input-label span { color: #3b82f6; margin-left: 4px; }
+    .input-label small { font-weight: normal; color: #94a3b8; margin-left: 6px; }
+
+    .q-box { margin-bottom: 25px; }
+    .art-input { width: 100%; padding: 16px; border: 1px solid #eef2f7; border-radius: 12px; background: #f8fafc; font-size: 15px; box-sizing: border-box; transition: 0.2s; }
+    .art-input:focus { outline: none; border-color: #3b82f6; background: #fff; box-shadow: 0 0 0 4px rgba(59,130,246,0.05); }
+
+    /* 패키지/옵션 아이템 */
+    .opt-card { display: flex; justify-content: space-between; align-items: center; padding: 20px; border: 1px solid #eef2f7; border-radius: 15px; margin-bottom: 12px; cursor: pointer; transition: 0.2s; }
+    .opt-card:hover { border-color: #3b82f6; background: #f0f7ff; }
+    .opt-card label { display: flex; align-items: center; font-size: 15px; font-weight: 600; cursor: pointer; flex: 1; }
+    .opt-card input { margin-right: 15px; transform: scale(1.3); }
+    .price-tag { color: #3b82f6; font-weight: 800; font-size: 16px; }
+
+    /* 버튼 */
+    .btn-row { display: flex; gap: 15px; margin-top: 30px; }
+    .btn-next { flex: 2; padding: 18px; background: #3b82f6; color: #fff; border: none; border-radius: 12px; font-weight: bold; font-size: 16px; cursor: pointer; box-shadow: 0 4px 15px rgba(59,130,246,0.3); transition: 0.2s; }
+    .btn-next:hover { background: #2563eb; transform: translateY(-2px); }
+    .btn-prev { flex: 1; padding: 18px; background: #fff; color: #64748b; border: 1px solid #e2e8f0; border-radius: 12px; font-weight: bold; cursor: pointer; }
+
+    /* 최종 견적 디자인 (image_713cfc.png 반영) */
+    .result-table { width: 100%; border-collapse: collapse; margin-bottom: 25px; background: #fff; border-radius: 15px; overflow: hidden; border: 1px solid #f1f5f9; }
+    .res-row { display: flex; justify-content: space-between; padding: 18px 25px; border-bottom: 1px solid #f8fafc; font-size: 14px; }
+    .res-cat { font-weight: 800; background: #f8fafc; color: #1e293b; padding: 10px 25px; font-size: 12px; text-align: right; border-bottom: 1px solid #f1f5f9; }
+    
+    .total-summary-box { background: #f0f7ff; border-radius: 15px; padding: 25px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; }
+    .total-summary-box span:first-child { font-weight: bold; color: #64748b; }
+    .total-price-txt { font-size: 26px; font-weight: 900; color: #3b82f6; }
+
+    .copy-banner { background: #fcfdfe; border: 1px solid #e2e8f0; border-radius: 12px; padding: 15px; margin-bottom: 15px; font-size: 13px; color: #64748b; display: flex; align-items: center; }
+</style>
+
+<div class="artmug-full-container">
+    
+    <div class="profile-card">
+        <img src="아바타_원형_이미지_주소" class="profile-avatar">
+        <div class="profile-name">김바니</div>
+        <div class="profile-desc">
+            안녕하세요, 김바니입니다!<br>
+            애정을 듬뿍 담아서 작업합니다 ଘ(੭*ˊᵕˋ)੭* ੈ♡‧₊˚ 항상 예쁘게 완성해드릴게요!
+        </div>
+        <div class="profile-tags">
+            <span class="tag-item">페이셜</span>
+            <span class="tag-item">성형</span>
+            <span class="tag-item">와루도(warudo)</span>
+            <span class="tag-item">뽀잉눈</span>
+            <span class="tag-item">개인작</span>
+        </div>
+    </div>
+
+    <img src="하늘색_김바니_로고_이미지_주소" class="main-logo-img">
+
+    <div class="section-box">
+        <div class="section-header">NOTICE</div>
+        <div class="notice-info-box">
+            <b>공지사항 미숙지로 인한 발생 상황은 작가가 책임지지 않습니다.</b><br>
+            본문을 꼭 숙지하신 후 신청해 주세요!
+        </div>
+        
+        <div class="acc-item">
+            <input type="checkbox" id="n1" class="acc-input">
+            <label for="n1" class="acc-header">
+                <div class="acc-icon">🛍️</div> BOOTH 이용안내 <div class="acc-arrow">▼</div>
+            </label>
+            <div class="acc-content"><div class="acc-body">· 아바타와 에셋은 <b>양측 구매</b>를 원칙으로 합니다.<br>· 작가가 없는 에셋은 선물하기 기능을 사용해 주세요.</div></div>
+        </div>
+        <div class="acc-item">
+            <input type="checkbox" id="n2" class="acc-input">
+            <label for="n2" class="acc-header">
+                <div class="acc-icon">🎨</div> 작업 안내 <div class="acc-arrow">▼</div>
+            </label>
+            <div class="acc-content"><div class="acc-body">· 평균 작업 기간은 14~30일입니다.<br>· 모든 작업물의 저작권은 작가에게 있습니다.</div></div>
+        </div>
+    </div>
+
+    <div class="section-box">
+        <div class="section-header">PORTFOLIO</div>
+        <input type="radio" name="pft" id="t1" class="tab-input" checked>
+        <input type="radio" name="pft" id="t2" class="tab-input">
+        <input type="radio" name="pft" id="t3" class="tab-input">
+        
+        <div class="tab-nav">
+            <label for="t1" class="tab-label">아바타 사진</label>
+            <label for="t2" class="tab-label">페이셜</label>
+            <label for="t3" class="tab-label">뽀잉눈</label>
+        </div>
+
+        <div class="pf-viewer">
+            <div class="pf-img" id="c1"><img src="아바타_포폴_주소"></div>
+            <div class="pf-img" id="c2"><img src="페이셜_포폴_주소"></div>
+            <div class="pf-img" id="c3"><img src="뽀잉눈_포폴_주소"></div>
+        </div>
+    </div>
+
+    <div class="section-header">신청양식 & 견적 계산기</div>
+    <div class="calc-box">
+        <div class="progress-bar">
+            <div class="step active" id="s1"><span class="step-num">1</span><span class="step-txt">신청양식</span></div>
+            <div class="step" id="s2"><span class="step-num">2</span><span class="step-txt">패키지 선택</span></div>
+            <div class="step" id="s3"><span class="step-num">3</span><span class="step-txt">뚜따 선택</span></div>
+            <div class="step" id="s4"><span class="step-num">4</span><span class="step-txt">기타 옵션</span></div>
+            <div class="step" id="s5"><span class="step-num">5</span><span class="step-txt">예상합계</span></div>
+        </div>
+
+        <div class="calc-page active" id="p1">
+            <div class="notice-info-box" style="text-align:left; font-size:13px;">📝 신청양식을 적고 <b>다음</b>을 클릭하면 견적을 볼 수 있습니다.</div>
+            
+            <div class="q-box">
+                <label class="input-label">스트리머 성함 + 방송국 주소 <span>*</span></label>
+                <input type="text" id="u_name" class="art-input" placeholder="내용을 입력해 주세요">
+            </div>
+            <div class="q-box">
+                <label class="input-label">신청하는 아바타 <small>ex) 시나노</small></label>
+                <input type="text" id="u_avatar" class="art-input" placeholder="내용을 입력해 주세요">
+            </div>
+            <div class="q-box">
+                <label class="input-label">원하는 이미지 / 색상 컨셉 <small>(선택)</small></label>
+                <textarea id="u_concept" class="art-input" rows="3" placeholder="내용을 입력해 주세요"></textarea>
+            </div>
+            <button class="btn-next" onclick="move(2)">다음 →</button>
+        </div>
+
+        <div class="calc-page" id="p2">
+            <div class="input-label">패키지 선택 <small>추가 옵션을 선택해 주세요 (해당 없으면 건너뛰기)</small></div>
+            <div class="opt-card">
+                <label><input type="checkbox" class="chk" data-cat="개인작 분양" data-name="개인작1 (밀티나+마누카)" data-price="430000"> 개인작1 (밀티나 얼굴+마누카 바디) 패키지</label>
+                <span class="price-tag">+₩430,000</span>
+            </div>
+            <div class="opt-card">
+                <label><input type="checkbox" class="chk" data-cat="데뷔 패키지" data-name="와루도 패키지" data-price="370000"> (오픈이벤트) 와루도(Warudo) 패키지</label>
+                <span class="price-tag">+₩370,000</span>
+            </div>
+            <div class="btn-row">
+                <button class="btn-prev" onclick="move(1)">이전</button>
+                <button class="btn-next" onclick="move(3)">다음 →</button>
+            </div>
+        </div>
+
+        <div class="calc-page" id="p3">
+            <div class="input-label">뚜따 선택</div>
+            <div class="opt-card">
+                <label><input type="checkbox" class="chk" data-cat="성형+페이셜" data-name="뽀잉눈" data-price="30000"> 뽀잉눈 성형</label>
+                <span class="price-tag">+₩30,000</span>
+            </div>
+            <div class="btn-row">
+                <button class="btn-prev" onclick="move(2)">이전</button>
+                <button class="btn-next" onclick="move(4)">다음 →</button>
+            </div>
+        </div>
+
+        <div class="calc-page" id="p4">
+            <div class="input-label">기타 옵션</div>
+            <div class="opt-card">
+                <label><input type="checkbox" class="chk" data-cat="빠른 마감" data-name="7일 이내 마감" data-price="100000"> 데뷔패키지 7일 이내 마감</label>
+                <span class="price-tag">+₩100,000</span>
+            </div>
+            <div class="btn-row">
+                <button class="btn-prev" onclick="move(3)">이전</button>
+                <button class="btn-next" onclick="move(5)">최종 견적 확인 →</button>
+            </div>
+        </div>
+
+        <div class="calc-page" id="p5">
+            <button class="btn-prev" onclick="move(4)" style="width:100px; padding:10px; margin-bottom:15px;">← 이전</button>
+            <div class="input-label">총 예상합계 <small>아래 금액은 최소 금액입니다</small></div>
+            
+            <div class="result-table" id="res_list">
+                </div>
+
+            <div class="total-summary-box">
+                <span>예상 합계</span>
+                <span class="total-price-txt">₩ <span id="total_txt">0</span></span>
+            </div>
+
+            <div class="copy-banner">
+                <input type="checkbox" id="agree" style="margin-right:10px;"> 필독사항을 모두 확인하였으며, 이에 동의합니다.
+            </div>
+            
+            <button class="btn-next" id="copyBtn" onclick="copy()" style="background:#1e293b;">📋 신청 내용 복사하기</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    function move(n) {
+        document.querySelectorAll('.calc-page').forEach(p => p.classList.remove('active'));
+        document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
+        document.getElementById('p'+n).classList.add('active');
+        document.getElementById('s'+n).classList.add('active');
+        if(n === 5) render();
+    }
+
+    function render() {
+        let sum = 0; let html = "";
+        const checked = document.querySelectorAll('.chk:checked');
+        checked.forEach(i => {
+            sum += parseInt(i.dataset.price);
+            html += `<div class="res-cat">🛒 ${i.dataset.cat}</div>
+                     <div class="res-row"><span>${i.dataset.name}</span><span style="color:#3b82f6; font-weight:bold;">+₩${parseInt(i.dataset.price).toLocaleString()}</span></div>`;
+        });
+        document.getElementById('total_txt').innerText = sum.toLocaleString();
+        document.getElementById('res_list').innerHTML = html || "<div style='padding:40px; text-align:center; color:#94a3b8;'>선택된 항목이 없습니다.</div>";
+    }
+
+    function copy() {
+        if(!document.getElementById('agree').checked) { alert("필독사항 동의 체크를 해주세요!"); return; }
+        const n = document.getElementById('u_name').value || "미입력";
+        const a = document.getElementById('u_avatar').value || "미입력";
+        let opts = ""; let total = 0;
+        document.querySelectorAll('.chk:checked').forEach(i => {
+            opts += `· ${i.dataset.name} (+₩${parseInt(i.dataset.price).toLocaleString()})\n`;
+            total += parseInt(i.dataset.price);
+        });
+        const txt = `📋 커미션 신청서\n\n1. 스트리머명/주소: ${n}\n2. 신청 아바타: ${a}\n\n[선택 옵션]\n${opts}\n──────────────────\n총 예상 합계: ₩${total.toLocaleString()}\n\n문의 전 공지사항을 모두 확인하였습니다.`;
+        const temp = document.createElement("textarea"); document.body.appendChild(temp);
+        temp.value = txt; temp.select(); document.execCommand('copy'); document.body.removeChild(temp);
+        alert("복사되었습니다! 메시지창에 붙여넣어 주세요.");
+    }
+</script>
