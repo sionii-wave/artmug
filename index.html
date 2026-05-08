@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>쇼니 커미션 상세페이지</title>
     <style>
-        /* 1. 디자인 시스템 */
         :root {
             --orange-main: #ff7f50;
             --orange-soft: #fffaf5;
@@ -21,85 +20,53 @@
         .container { max-width: 900px; width: 100%; font-family: 'Pretendard', -apple-system, sans-serif; color: #334155; }
         img { max-width: 100%; height: auto; display: block; border-radius: 20px; }
 
-        /* 2. 상단 섹션 */
-        .main-logo { width: 100%; border-radius: 30px; margin-bottom: 25px; }
-        .intro-box { background: #fff; border: 1px solid var(--orange-border); border-radius: 30px; padding: 40px 20px; text-align: center; margin-bottom: 20px; box-shadow: 0 10px 30px rgba(255,165,0,0.03); }
-        .intro-text { font-size: 16px; color: var(--text-gray); line-height: 2; font-weight: 500; }
-
-        .event-box { background: var(--orange-soft); border: 2px solid #ff9f43; border-radius: 25px; padding: 30px 20px; text-align: center; margin-bottom: 40px; position: relative; }
-        .event-badge { position: absolute; top: -15px; left: 50%; transform: translateX(-50%); background: var(--orange-main); color: #fff; padding: 5px 15px; border-radius: 20px; font-size: 12px; font-weight: bold; }
-        .event-text { font-size: 16px; font-weight: 700; color: #a05e2b; margin-bottom: 12px; }
-        .event-price { font-size: 18px; font-weight: 800; color: var(--orange-main); }
-        .price-old { text-decoration: line-through; color: #d0b8a8; margin-right: 8px; }
-
-        /* 3. 아코디언 */
+        /* 공통 헤더 스타일 */
         .header-tag { background: var(--purple-soft); color: var(--purple-main); font-size: 10px; padding: 3px 8px; border-radius: 6px; display: inline-block; margin-bottom: 5px; font-weight: bold; }
         .section-header { font-size: 22px; font-weight: 900; color: var(--text-dark); margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
-        
+
+        /* 상단 섹션 */
+        .main-logo { width: 100%; border-radius: 30px; margin-bottom: 25px; }
+        .intro-box { background: #fff; border: 1px solid var(--orange-border); border-radius: 30px; padding: 40px 20px; text-align: center; margin-bottom: 20px; }
+        .event-box { background: var(--orange-soft); border: 2px solid #ff9f43; border-radius: 25px; padding: 30px 20px; text-align: center; margin-bottom: 40px; position: relative; }
+        .event-badge { position: absolute; top: -15px; left: 50%; transform: translateX(-50%); background: var(--orange-main); color: #fff; padding: 5px 15px; border-radius: 20px; font-size: 12px; font-weight: bold; }
+
+        /* 아코디언 */
         .acc-item { background: #fff; border: 1px solid var(--orange-border); border-radius: 15px; margin-bottom: 12px; overflow: hidden; }
         .acc-input { display: none; }
         .acc-header { display: flex; align-items: center; padding: 18px 25px; cursor: pointer; font-weight: 700; color: var(--text-dark); }
-        .acc-icon { width: 30px; height: 30px; background: var(--purple-soft); border-radius: 8px; display: flex; justify-content: center; align-items: center; margin-right: 15px; }
-        .acc-arrow { margin-left: auto; color: #ff9f43; transition: 0.3s; font-size: 12px; }
-        
+        .acc-arrow { margin-left: auto; color: #ff9f43; transition: 0.3s; }
         .acc-content { max-height: 0; overflow: hidden; transition: 0.3s ease-out; background: var(--bg-cream); }
         .acc-body { padding: 20px 25px 30px 60px; font-size: 14px; color: var(--text-gray); line-height: 1.8; border-top: 1px solid #fff5eb; }
         .acc-input:checked ~ .acc-content { max-height: 1000px; }
         .acc-input:checked ~ .acc-header .acc-arrow { transform: rotate(180deg); }
 
-        .notice-list { margin: 0; padding: 0; list-style: none; }
-        .notice-list li { position: relative; padding-left: 15px; margin-bottom: 8px; }
-        .notice-list li::before { content: '·'; position: absolute; left: 0; font-weight: bold; color: #ff9f43; }
-
-        /* 4. 작업 진행 순서 */
-        .process-box { background: #fff; border: 1px solid var(--orange-border); border-radius: 20px; padding: 30px 20px; text-align: center; }
-        .process-text { font-size: 15px; line-height: 2.5; color: var(--text-gray); font-weight: 600; word-break: keep-all; }
-        .process-step { color: var(--text-dark); }
-        .process-arrow { color: var(--orange-main); margin: 0 8px; font-weight: 900; }
-        .process-highlight { color: var(--purple-main); font-size: 13px; font-weight: 800; }
-
-        /* 5. 슬라이더 */
-        .tab-menu { display: flex; justify-content: center; gap: 8px; margin: 40px 0 20px; flex-wrap: wrap; }
-        .tab-btn { padding: 10px 18px; border: 1px solid var(--orange-border); background: #fff; border-radius: 20px; font-size: 13px; font-weight: 700; color: #7f6a5b; cursor: pointer; transition: 0.3s; }
-        .tab-btn.active { background: var(--purple-main) !important; color: #fff !important; }
-
+        /* 슬라이더 */
+        .tab-menu { display: flex; justify-content: center; gap: 8px; margin-bottom: 20px; flex-wrap: wrap; }
+        .tab-btn { padding: 10px 18px; border: 1px solid var(--orange-border); background: #fff; border-radius: 20px; font-size: 13px; font-weight: 700; cursor: pointer; }
+        .tab-btn.active { background: var(--purple-main); color: #fff; border-color: var(--purple-main); }
         .slider-wrap { position: relative; width: 100%; background: #fff; border: 1px solid var(--orange-border); border-radius: 25px; overflow: hidden; }
         .slider-track { display: flex; transition: transform 0.4s; align-items: center; }
         .slide-item { min-width: 100%; padding: 10px; box-sizing: border-box; }
-        .nav-btn { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(255,255,255,0.8); border: none; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; color: var(--orange-main); font-weight: bold; z-index: 5; }
-        .prev { left: 15px; } .next { right: 15px; }
-        .ready-box { width: 100%; padding: 100px 0; text-align: center; color: var(--purple-main); font-weight: bold; font-size: 18px; background: var(--purple-soft); border-radius: 25px; }
-        .video-container { position: relative; width: 100%; padding-bottom: 56.25%; height: 0; border-radius: 15px; overflow: hidden; background: #000; }
-        .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
+        .nav-btn { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(255,255,255,0.8); border: none; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; z-index: 5; }
 
-        /* 6. 계산기 섹션 스타일 */
-        .order-section { margin-top: 40px; display: flex; gap: 25px; align-items: flex-start; flex-wrap: wrap; }
-        .order-form { flex: 1; min-width: 320px; background: #fff; border: 1px solid var(--orange-border); border-radius: 25px; padding: 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.02); }
+        /* 계산기 */
+        .order-section { margin-top: 40px; display: flex; gap: 25px; flex-wrap: wrap; }
+        .order-form { flex: 1; min-width: 320px; background: #fff; border: 1px solid var(--orange-border); border-radius: 25px; padding: 30px; }
         .step-indicator { display: flex; justify-content: space-between; margin-bottom: 40px; position: relative; }
         .step-indicator::before { content: ''; position: absolute; top: 15px; left: 0; right: 0; height: 2px; background: var(--purple-soft); z-index: 1; }
-        .step { position: relative; z-index: 2; background: #fff; width: 32px; height: 32px; border-radius: 50%; border: 2px solid var(--purple-soft); display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: bold; color: #cbd5e1; }
+        .step { position: relative; z-index: 2; background: #fff; width: 32px; height: 32px; border-radius: 50%; border: 2px solid var(--purple-soft); display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: bold; color: #cbd5e1; }
         .step.active { border-color: var(--purple-main); background: var(--purple-main); color: #fff; }
-        .step-label { position: absolute; top: 38px; font-size: 10px; white-space: nowrap; color: #94a3b8; }
-        .step.active .step-label { color: var(--purple-main); font-weight: 800; }
-
         .form-group { display: none; }
         .form-group.active { display: block; animation: fadeIn 0.4s; }
-        .input-title { font-size: 14px; font-weight: 800; color: var(--text-dark); margin: 20px 0 8px; display: block; }
-        .required { color: #ef4444; margin-left: 4px; }
-        .input-box { width: 100%; padding: 12px 15px; border: 1px solid #e2e8f0; border-radius: 12px; font-family: inherit; font-size: 13px; box-sizing: border-box; }
-        
-        .opt-card { border: 1px solid #e2e8f0; border-radius: 15px; padding: 15px; margin-bottom: 10px; cursor: pointer; display: flex; align-items: center; gap: 12px; transition: 0.2s; }
-        .opt-card:hover { background: var(--orange-soft); border-color: var(--orange-main); }
-        .opt-card.selected { border-color: var(--purple-main); background: var(--purple-soft); }
-        .opt-card.disabled { opacity: 0.5; cursor: not-allowed; background: #f8fafc; }
+        .input-box { width: 100%; padding: 12px; border: 1px solid #e2e8f0; border-radius: 12px; margin-bottom: 15px; font-family: inherit; }
+        .opt-card { border: 1px solid #e2e8f0; border-radius: 15px; padding: 15px; margin-bottom: 10px; cursor: pointer; display: flex; align-items: center; gap: 12px; }
         .qty-control { display: flex; align-items: center; gap: 10px; margin-left: auto; }
-        .qty-btn { width: 26px; height: 26px; border: 1px solid #cbd5e1; background: #fff; border-radius: 6px; cursor: pointer; font-weight: bold; }
+        .qty-btn { width: 26px; height: 26px; border: 1px solid #cbd5e1; background: #fff; border-radius: 6px; cursor: pointer; }
 
         .summary-box { width: 340px; background: #fff; border: 1px solid var(--orange-border); border-radius: 25px; padding: 25px; position: sticky; top: 20px; }
-        .selected-item { display: flex; justify-content: space-between; font-size: 13px; margin-bottom: 12px; color: var(--text-gray); }
-        .total-price-wrap { border-top: 2px dashed var(--orange-border); margin-top: 20px; padding-top: 20px; }
         .btn-action { width: 100%; background: var(--purple-main); color: #fff; border: none; padding: 15px; border-radius: 15px; font-weight: bold; cursor: pointer; margin-top: 10px; }
-        
+        .btn-action:disabled { background: #cbd5e1; cursor: not-allowed; }
+
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
     </style>
 </head>
@@ -107,332 +74,195 @@
 
 <div class="container">
     <img src="https://github.com/sionii-wave/artmug/blob/main/KakaoTalk_20260404_030131353.png?raw=true" class="main-logo">
-    <div class="intro-box">
-        <div class="intro-text">
-            안녕하세요 작가 쇼니입니다.<br>
-            의뢰자님의 취향에 딱 맞는 아바타를 만들 수 있도록 최선을 다 하겠습니다.<br>
-            편하게 문의 주세요. ৎ₍ ^..^₎ᜑ𖹭.ᐟ
-        </div>
-    </div>
-
+    <div class="intro-box"> 안녕하세요 작가 쇼니입니다. ৎ₍ ^..^₎ᜑ𖹭.ᐟ </div>
     <div class="event-box">
         <div class="event-badge">EVENT</div>
-        <div class="event-text">포트폴리오 작업물 위해 이벤트 기간 동안 데뷔패키지 및 개인작 할인이 적용 됩니다.<br>ᰔ많은 문의 부탁드립니다.ᰔ</div>
-        <div class="event-price">데뷔패키지 <span class="price-old">300,000원</span> > 180,000원</div>
+        데뷔패키지 <span style="text-decoration: line-through; color: #d0b8a8;">300,000원</span> > 180,000원
     </div>
 
     <span class="header-tag">MUST READ</span>
     <div class="section-header">💜 필독사항</div>
-
     <div class="acc-item">
         <input type="checkbox" id="n1" class="acc-input">
-        <label for="n1" class="acc-header"><div class="acc-icon">💜</div> 작업 관련 <span class="acc-arrow">▼</span></label>
-        <div class="acc-content"><div class="acc-body"><ul class="notice-list">
-            <li>결제 전 꼭 <b>문의 먼저</b> 부탁드립니다. 모든 작업은 입금 순으로 진행됩니다.</li>
-            <li>작업 기간은 <b>최소 7일~14일</b>이 소요됩니다.</li>
-            <li>컨펌 중 24시간 내 답변이 없을 경우 작업 순서가 변경될 수 있습니다.</li>
-            <li>모든 작업물은 포트폴리오로 사용될 수 있습니다.</li>
-            <li>작업물 보관 기간은 1개월입니다.</li>
-        </ul></div></div>
-    </div>
-
-    <div class="acc-item">
-        <input type="checkbox" id="n2" class="acc-input">
-        <label for="n2" class="acc-header"><div class="acc-icon">💜</div> BOOTH 관련 <span class="acc-arrow">▼</span></label>
-        <div class="acc-content"><div class="acc-body"><ul class="notice-list">
-            <li>아바타 및 파츠의 <b>저작권 및 방송 송출 규정</b>을 확인해 주세요.</li>
-            <li>2차 가공, 배포가 허용된 아이템만 작업 가능합니다.</li>
-            <li>부스 아이템은 의뢰자와 작가 양측이 모두 보유해야 합니다.</li>
-            <li>작가가 보유하지 않은 파츠는 <b>기프트 기능</b>으로 전달해 주셔야 합니다.</li>
-        </ul></div></div>
-    </div>
-
-    <div class="acc-item">
-        <input type="checkbox" id="n3" class="acc-input">
-        <label for="n3" class="acc-header"><div class="acc-icon">💜</div> 작업물 관련 <span class="acc-arrow">▼</span></label>
-        <div class="acc-content"><div class="acc-body"><ul class="notice-list">
-            <li>유니티패키지 미추가 시 <b>VSF파일</b>만 전달됩니다.</li>
-            <li>유니티패키지에는 실시간 그림자와 FBX는 포함되지 않습니다.</li>
-            <li>타 작가님께 추가 작업 시 사전에 꼭 말씀해 주세요.</li>
-        </ul></div></div>
-    </div>
-
-    <div style="margin-top: 40px;">
-        <span class="header-tag">WORK PROCESS</span>
-        <div class="section-header">💜 작업 진행 순서</div>
-        <div class="process-box">
-            <div class="process-text">
-                <span class="process-step">문의 및 상담</span> <span class="process-arrow">❯</span>
-                <span class="process-step">결제</span> <span class="process-arrow">❯</span>
-                <span class="process-step">성형</span> <span class="process-arrow">❯</span>
-                <span class="process-step">컨펌 <span class="process-highlight">(최대 2회)</span></span> <span class="process-arrow">❯</span>
-                <span class="process-step">페이셜</span> <span class="process-arrow">❯</span>
-                <span class="process-step">컨펌 <span class="process-highlight">(최대 2회)</span></span> <br>
-                <span class="process-arrow">❯</span>
-                <span class="process-step">뚜따</span> <span class="process-arrow">❯</span>
-                <span class="process-step">컨펌 <span class="process-highlight">(최대 2회)</span></span> <span class="process-arrow">❯</span>
-                <span class="process-step">작업물 전달</span>
-            </div>
-        </div>
+        <label for="n1" class="acc-header">💜 작업 관련 안내 <span class="acc-arrow">▼</span></label>
+        <div class="acc-content"><div class="acc-body">문의 후 결제 부탁드립니다. 작업은 입금 순으로 진행됩니다.</div></div>
     </div>
 
     <div style="margin-top: 50px;">
-        <span class="header-tag">PERSONAL WORK</span>
-        <div class="section-header">💜 개인작 & 페이셜</div>
+        <span class="header-tag">PORTFOLIO</span>
+        <div class="section-header">💜 개인작</div>
         <div class="tab-menu">
             <button class="tab-btn active" onclick="changeTab('all', this)">전체</button>
             <button class="tab-btn" onclick="changeTab('shinano', this)">시나노</button>
             <button class="tab-btn" onclick="changeTab('airi', this)">아이리</button>
-            <button class="tab-btn" onclick="changeTab('ready', this)">준비중</button>
         </div>
         <div class="slider-wrap">
-            <button class="nav-btn prev" onclick="moveImg(-1)">❮</button>
+            <button class="nav-btn" style="left:15px" onclick="moveImg(-1)">❮</button>
             <div class="slider-track" id="track"></div>
-            <button class="nav-btn next" onclick="moveImg(1)">❯</button>
+            <button class="nav-btn" style="right:15px" onclick="moveImg(1)">❯</button>
+        </div>
+    </div>
+
+    <div class="acc-item" style="margin-top: 20px;">
+        <input type="checkbox" id="p_info" class="acc-input" checked>
+        <label for="p_info" class="acc-header">💜 개인작 안내사항 <span class="acc-arrow">▼</span></label>
+        <div class="acc-content"><div class="acc-body">
+            · 개인작 헤어 및 의상 무료 변경<br>
+            · 헤어 및 렌즈 텍스쳐 무료 변경<br>
+            · 특수 표정 추가 불가
+        </div></div>
+    </div>
+
+    <div style="margin-top: 50px;">
+        <span class="header-tag">FACIAL VIDEO</span>
+        <div class="section-header">💜 개인작 페이셜</div>
+        <div style="background:#000; border-radius:20px; overflow:hidden; aspect-ratio: 16/9;">
+            <iframe width="100%" height="100%" src="https://www.youtube.com/embed/영상ID" frameborder="0" allowfullscreen></iframe>
         </div>
     </div>
 
     <div style="margin-top: 60px;">
         <span class="header-tag">ORDER & QUOTE</span>
         <div class="section-header">💜 신청양식 & 견적 계산기</div>
-        <div class="desc-text" style="background:#fff; padding:20px; border-radius:15px; border:1px solid var(--orange-border); font-size:13px; line-height:1.7; color:var(--text-gray);">
-            해당 견적은 예시 금액이며, 상담 후 추가되는 옵션에 따라 변동될 수 있습니다.<br>
-            요청 사항을 최대한 상세하게 작성해 주실수록 원하시는 방향에 더욱 가까운 작업물을 받아보실 수 있습니다.<br>
-            필수 입력 항목이 아닌 해당되지 않는 항목은 비워두셔도 좋습니다.
-        </div>
-
+        
         <div class="order-section">
             <div class="order-form">
                 <div class="step-indicator">
-                    <div class="step active" id="st1">1<span class="step-label">문의양식</span></div>
-                    <div class="step" id="st2">2<span class="step-label">구매옵션</span></div>
-                    <div class="step" id="st3">3<span class="step-label">뚜따옵션</span></div>
-                    <div class="step" id="st4">4<span class="step-label">추가옵션</span></div>
+                    <div class="step active" id="st1">1</div>
+                    <div class="step" id="st2">2</div>
+                    <div class="step" id="st3">3</div>
+                    <div class="step" id="st4">4</div>
                 </div>
 
                 <div id="step1" class="form-group active">
-                    <label class="input-title">방송 활동명, 방송국 주소 <span class="required">*</span></label>
-                    <input type="text" id="streamer_info" class="input-box" placeholder="데뷔 예정일 시 데뷔하실 플랫폼과 데뷔 시기를 작성해 주세요.">
-                    <label class="input-title">베이스 아바타</label>
-                    <input type="text" id="base_avatar" class="input-box" placeholder="ex) 시나노, 아이리 등">
-                    <label class="input-title">BOOTH 링크</label>
-                    <textarea id="booth_link" class="input-box" rows="2" placeholder="헤어, 의상, 악세 등 사용하실 BOOTH 파츠 링크를 첨부해 주세요."></textarea>
-                    <label class="input-title">원하는 스타일</label>
-                    <textarea id="style_desc" class="input-box" rows="3" placeholder="상세하게 작성해 주실수록 원하시는 방향에 가까운 작업물을 받아보실 수 있습니다."></textarea>
+                    <label style="font-weight:bold; font-size:13px;">방송 활동명 *</label>
+                    <input type="text" id="streamer_info" class="input-box" placeholder="플랫폼과 활동명을 적어주세요.">
+                    <label style="font-weight:bold; font-size:13px;">베이스 아바타</label>
+                    <input type="text" id="base_avatar" class="input-box" placeholder="ex) 시나노, 아이리">
                 </div>
 
                 <div id="step2" class="form-group">
-                    <div class="opt-card" id="card_pkg_debut" onclick="toggleOpt('pkg_debut', 180000, '(오픈이벤트) 데뷔 패키지')">
-                        <input type="checkbox" id="chk_pkg_debut">
-                        <div style="font-size:13px; font-weight:700;">(오픈이벤트) 데뷔 패키지 <br><span style="font-size:11px; color:#94a3b8; font-weight:normal;">성형+화장+52가지페이셜+전용헤어1+의상1 등</span></div>
-                    </div>
-                    <div class="opt-card" id="card_pkg_airi" onclick="toggleOpt('pkg_airi', 180000, '(오픈이벤트) 아이리 개인작6')">
-                        <input type="checkbox" id="chk_pkg_airi">
-                        <div style="font-size:13px; font-weight:700;">(오픈이벤트) 아이리 개인작6 <br><span style="font-size:11px; color:#94a3b8; font-weight:normal;">아이리 베이스 개인 작업물</span></div>
-                    </div>
-                    <div class="opt-card disabled">
-                        <input type="checkbox" disabled>
-                        <div style="font-size:13px; font-weight:700; color:#cbd5e1;">(오픈이벤트) 밀티나 개인작8 [준비중]</div>
+                    <div class="opt-card" onclick="toggleOpt('pkg_debut', 180000, '데뷔 패키지')">
+                        <input type="checkbox" id="chk_pkg_debut"> <span>데뷔 패키지 (+180,000원)</span>
                     </div>
                 </div>
 
                 <div id="step3" class="form-group">
-                    <p style="font-size:12px; color:var(--purple-main); font-weight:bold; margin-bottom:15px;">💡 모든 패키지는 기본으로 의상 1개와 헤어 1개가 포함되어 있습니다.</p>
                     <div class="opt-card">
-                        <div style="font-size:13px; font-weight:700;">전용 헤어 (옷장포함) <span style="color:var(--purple-main)">+1.0</span></div>
+                        <span>전용 헤어 (+10,000원)</span>
                         <div class="qty-control">
                             <button class="qty-btn" onclick="updateQty('hair', -1, 10000, '전용 헤어')">-</button>
                             <span id="qty_hair">0</span>
                             <button class="qty-btn" onclick="updateQty('hair', 1, 10000, '전용 헤어')">+</button>
                         </div>
                     </div>
-                    <div class="opt-card">
-                        <div style="font-size:13px; font-weight:700;">전용 의상 (옷장포함) <span style="color:var(--purple-main)">+1.0</span></div>
-                        <div class="qty-control">
-                            <button class="qty-btn" onclick="updateQty('outfit', -1, 10000, '전용 의상')">-</button>
-                            <span id="qty_outfit">0</span>
-                            <button class="qty-btn" onclick="updateQty('outfit', 1, 10000, '전용 의상')">+</button>
-                        </div>
-                    </div>
-                    <div class="opt-card">
-                        <div style="font-size:13px; font-weight:700;">옷장 ON/OFF 기능 <span style="color:var(--purple-main)">+0.3</span></div>
-                        <div class="qty-control">
-                            <button class="qty-btn" onclick="updateQty('closet', -1, 3000, '옷장 ON/OFF')">-</button>
-                            <span id="qty_closet">0</span>
-                            <button class="qty-btn" onclick="updateQty('closet', 1, 3000, '옷장 ON/OFF')">+</button>
-                        </div>
-                    </div>
                 </div>
 
                 <div id="step4" class="form-group">
-                    <p style="font-size:12px; color:#ef4444; font-weight:bold; margin-bottom:15px;">⚠️ 개인작은 특수표정 추가가 불가능 합니다.</p>
-                    <div class="opt-card" onclick="toggleOpt('ear', 30000, '동물귀+페이셜 연동')">
-                        <input type="checkbox" id="chk_ear"> <span style="font-size:13px; font-weight:700;">동물귀+페이셜 연동 (+3.0)</span>
+                    <div class="opt-card" onclick="toggleOpt('unity', 50000, '유니티 파일')">
+                        <input type="checkbox" id="chk_unity"> <span>유니티 패키지 (+50,000원)</span>
                     </div>
-                    <div class="opt-card">
-                        <div style="font-size:13px; font-weight:700;">눈 연동 특수표정 (개당 +1.0)</div>
-                        <div class="qty-control">
-                            <button class="qty-btn" onclick="updateQty('eye_exp', -1, 10000, '눈 특수표정')">-</button>
-                            <span id="qty_eye_exp">0</span>
-                            <button class="qty-btn" onclick="updateQty('eye_exp', 1, 10000, '눈 특수표정')">+</button>
-                        </div>
-                    </div>
-                    <div class="opt-card">
-                        <div style="font-size:13px; font-weight:700;">얼굴 연동 특수표정 (개당 +2.0)</div>
-                        <div class="qty-control">
-                            <button class="qty-btn" onclick="updateQty('face_exp', -1, 20000, '얼굴 특수표정')">-</button>
-                            <span id="qty_face_exp">0</span>
-                            <button class="qty-btn" onclick="updateQty('face_exp', 1, 20000, '얼굴 특수표정')">+</button>
-                        </div>
-                    </div>
-                    <div class="opt-card" onclick="toggleOpt('tex_hard', 20000, '복잡한 텍스쳐 수정')">
-                        <input type="checkbox" id="chk_tex_hard"> <span style="font-size:13px; font-weight:700;">복잡한 텍스쳐 수정 (+2.0)</span>
-                    </div>
-                    <div class="opt-card" onclick="toggleOpt('unity', 50000, '유니티 패키지 파일')">
-                        <input type="checkbox" id="chk_unity"> <span style="font-size:13px; font-weight:700;">유니티 패키지 파일 (+5.0)</span>
-                    </div>
-                    <div class="opt-card" onclick="toggleOpt('private', 50000, '포트폴리오 비공개')">
-                        <input type="checkbox" id="chk_private"> <span style="font-size:13px; font-weight:700;">포트폴리오 비공개 (+5.0)</span>
+                    <div style="background:var(--purple-soft); padding:15px; border-radius:12px; margin-top:20px;">
+                        <label style="font-size:12px; display:flex; gap:8px; cursor:pointer; color:var(--purple-main); font-weight:bold;">
+                            <input type="checkbox" id="agree_chk" onchange="toggleCopyBtn()">
+                            필독사항을 다 확인하셨나요? 내용 미숙지로 인해 발생하는 모든 문제는 책임지지 않습니다.
+                        </label>
                     </div>
                 </div>
 
-                <div style="display:flex; gap:10px; margin-top:30px;">
-                    <button class="btn-action" id="prevBtn" onclick="moveStep(-1)" style="display:none; background:#e2e8f0; color:#64748b;">이전 단계</button>
+                <div style="display:flex; gap:10px; margin-top:20px;">
+                    <button class="btn-action" id="prevBtn" onclick="moveStep(-1)" style="display:none; background:#e2e8f0; color:#64748b;">이전</button>
                     <button class="btn-action" id="nextBtn" onclick="moveStep(1)">다음 단계로</button>
+                    <button class="btn-action" id="finalCopyBtn" onclick="copyOrder()" style="display:none;" disabled>📋 양식 복사하기</button>
                 </div>
             </div>
 
             <div class="summary-box">
-                <div style="font-size:18px; font-weight:900; margin-bottom:20px; color:var(--text-dark);">선택 요약</div>
-                <div id="selectedList" style="min-height:100px;">
-                    <p id="emptyMsg" style="font-size:12px; color:#94a3b8; text-align:center; margin-top:30px;">선택된 항목이 없습니다.</p>
+                <div style="font-weight:900; margin-bottom:15px;">선택 요약</div>
+                <div id="selectedList" style="min-height:100px; font-size:13px;"></div>
+                <div style="border-top:2px dashed var(--orange-border); margin-top:20px; padding-top:20px;">
+                    <span style="font-weight:bold;">예상 합계</span>
+                    <span id="totalAmount" style="float:right; color:var(--orange-main); font-weight:900; font-size:20px;">0원</span>
                 </div>
-                <div class="total-price-wrap">
-                    <span style="font-weight:bold; color:var(--text-gray);">예상 합계</span>
-                    <span id="totalAmount" style="float:right; color:var(--orange-main); font-weight:900; font-size:22px;">0원</span>
-                </div>
-                <button class="btn-action" onclick="copyOrder()" style="background:var(--orange-soft); color:var(--orange-main); border:1px solid var(--orange-main);">📋 신청양식 복사하기</button>
             </div>
         </div>
-    </div>
-
-    <div class="acc-item" style="margin-top: 30px;">
-        <input type="checkbox" id="personalInfo" class="acc-input">
-        <label for="personalInfo" class="acc-header"><div class="acc-icon">💜</div> 개인작 안내사항 <span class="acc-arrow">▼</span></label>
-        <div class="acc-content"><div class="acc-body"><ul class="notice-list">
-            <li>개인작 헤어 및 의상 무료 변경</li>
-            <li>헤어 및 렌즈 텍스쳐 무료 변경</li>
-            <li>특수 표정 추가 불가</li>
-            <li>일정 시간 이내 회신 없을 시 우선권이 넘어갈 수 있습니다.</li>
-        </ul></div></div>
     </div>
 </div>
 
 <script>
-    /* 1. 슬라이더 데이터 */
+    /* 슬라이더 제어 */
     const data = {
         shinano: ["https://github.com/sionii-wave/artmug/blob/main/%EC%8B%9C%EB%82%98%EB%85%B8%EA%B0%9C%EC%9D%B8%EC%9E%917.jpg?raw=true"],
-        airi: ["https://github.com/sionii-wave/artmug/blob/main/%EC%95%84%EC%9D%B4%EB%A6%AC%EA%B0%9C%EC%9D%B8%EC%9E%916.jpg?raw=true"],
-        ready: []
+        airi: ["https://github.com/sionii-wave/artmug/blob/main/%EC%95%84%EC%9D%B4%EB%A6%AC%EA%B0%9C%EC%9D%B8%EC%9E%916.jpg?raw=true"]
     };
     let currentImgs = []; let imgIdx = 0;
-
     function changeTab(type, btn) {
-        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
+        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active')); btn.classList.add('active');
         const track = document.getElementById('track'); track.innerHTML = ""; imgIdx = 0;
-        if (type === 'all') currentImgs = [...data.shinano, ...data.airi];
-        else currentImgs = data[type];
-
-        if (currentImgs.length === 0) {
-            track.innerHTML = `<div class="ready-box">준비중입니다... ᰔ</div>`;
-            document.querySelectorAll('.slider-wrap .nav-btn').forEach(n => n.style.display = 'none');
-        } else {
-            currentImgs.forEach(src => {
-                const div = document.createElement('div'); div.className = 'slide-item';
-                div.innerHTML = `<img src="${src}">`; track.appendChild(div);
-            });
-            document.querySelectorAll('.slider-wrap .nav-btn').forEach(n => n.style.display = currentImgs.length > 1 ? 'block' : 'none');
-        }
+        currentImgs = (type === 'all') ? [...data.shinano, ...data.airi] : data[type];
+        currentImgs.forEach(src => { track.innerHTML += `<div class="slide-item"><img src="${src}"></div>`; });
         track.style.transform = `translateX(0)`;
     }
-
     function moveImg(n) {
-        if (currentImgs.length <= 1) return;
         imgIdx = (imgIdx + n + currentImgs.length) % currentImgs.length;
         document.getElementById('track').style.transform = `translateX(-${imgIdx * 100}%)`;
     }
 
-    /* 2. 계산기 로직 */
+    /* 계산기 제어 */
     let currStep = 1; let selectedOpts = {}; let total = 0;
-
     function moveStep(n) {
-        if (n === 1 && currStep === 1 && !document.getElementById('streamer_info').value.trim()) {
-            alert("활동명은 필수 입력 항목입니다! 💜"); return;
-        }
+        if(n === 1 && currStep === 1 && !document.getElementById('streamer_info').value.trim()) return alert("활동명을 입력해주세요!");
         document.getElementById(`step${currStep}`).classList.remove('active');
         document.getElementById(`st${currStep}`).classList.remove('active');
         currStep += n;
         document.getElementById(`step${currStep}`).classList.add('active');
         document.getElementById(`st${currStep}`).classList.add('active');
+        
         document.getElementById('prevBtn').style.display = currStep === 1 ? 'none' : 'block';
-        document.getElementById('nextBtn').innerText = currStep === 4 ? '신청 완료' : '다음 단계로';
-        if (currStep > 4) currStep = 4;
-    }
-
-    function updateSummary() {
-        const list = document.getElementById('selectedList');
-        const empty = document.getElementById('emptyMsg');
-        list.innerHTML = ""; total = 0;
-
-        let keys = Object.keys(selectedOpts);
-        if (keys.length === 0) { list.appendChild(empty); }
-        else {
-            keys.forEach(key => {
-                const item = selectedOpts[key];
-                const div = document.createElement('div'); div.className = 'selected-item';
-                div.innerHTML = `<span>${item.name} ${item.qty > 1 ? 'x'+item.qty : ''}</span><span>${(item.price * item.qty).toLocaleString()}원</span>`;
-                list.appendChild(div);
-                total += (item.price * item.qty);
-            });
+        if(currStep === 4) {
+            document.getElementById('nextBtn').style.display = 'none';
+            document.getElementById('finalCopyBtn').style.display = 'block';
+        } else {
+            document.getElementById('nextBtn').style.display = 'block';
+            document.getElementById('finalCopyBtn').style.display = 'none';
         }
-        document.getElementById('totalAmount').innerText = total.toLocaleString() + "원";
     }
 
     function toggleOpt(id, price, name) {
-        const chk = document.getElementById(`chk_${id}`);
-        const card = document.getElementById(`card_${id}`);
-        chk.checked = !chk.checked;
-        if (chk.checked) {
-            selectedOpts[id] = { name, price, qty: 1 };
-            if(card) card.classList.add('selected');
-        } else {
-            delete selectedOpts[id];
-            if(card) card.classList.remove('selected');
-        }
+        const chk = document.getElementById(`chk_${id}`); chk.checked = !chk.checked;
+        if(chk.checked) selectedOpts[id] = {name, price, qty:1}; else delete selectedOpts[id];
         updateSummary();
     }
 
     function updateQty(id, n, price, name) {
-        if (!selectedOpts[id]) { if (n > 0) selectedOpts[id] = { name, price, qty: n }; }
-        else { selectedOpts[id].qty += n; if (selectedOpts[id].qty <= 0) delete selectedOpts[id]; }
+        if(!selectedOpts[id]) selectedOpts[id] = {name, price, qty:0};
+        selectedOpts[id].qty += n;
+        if(selectedOpts[id].qty <= 0) delete selectedOpts[id];
         document.getElementById(`qty_${id}`).innerText = selectedOpts[id] ? selectedOpts[id].qty : 0;
         updateSummary();
     }
 
-    function copyOrder() {
-        const info = document.getElementById('streamer_info').value;
-        const base = document.getElementById('base_avatar').value;
-        const link = document.getElementById('booth_link').value;
-        const style = document.getElementById('style_desc').value;
-        let opts = "";
-        Object.keys(selectedOpts).forEach(k => { opts += `- ${selectedOpts[k].name}: ${selectedOpts[k].qty}개\n`; });
+    function updateSummary() {
+        const list = document.getElementById('selectedList'); list.innerHTML = ""; total = 0;
+        Object.keys(selectedOpts).forEach(k => {
+            const item = selectedOpts[k];
+            list.innerHTML += `<div style="display:flex; justify-content:space-between; margin-bottom:8px;"><span>${item.name} x${item.qty}</span><span>${(item.price*item.qty).toLocaleString()}원</span></div>`;
+            total += (item.price * item.qty);
+        });
+        document.getElementById('totalAmount').innerText = total.toLocaleString() + "원";
+    }
 
-        const text = `[쇼니 커미션 신청서]\n\n활동명/주소: ${info}\n베이스아바타: ${base}\n부스링크: ${link}\n스타일: ${style}\n\n[선택옵션]\n${opts}\n예상견적: ${total.toLocaleString()}원`;
-        navigator.clipboard.writeText(text).then(() => alert("신청서가 복사되었습니다! 문의로 전달해 주세요. 💜"));
+    function toggleCopyBtn() {
+        document.getElementById('finalCopyBtn').disabled = !document.getElementById('agree_chk').checked;
+    }
+
+    function copyOrder() {
+        const text = `[신청서]\n활동명: ${document.getElementById('streamer_info').value}\n총 견적: ${total.toLocaleString()}원`;
+        navigator.clipboard.writeText(text).then(() => alert("양식이 복사되었습니다! 💜"));
     }
 
     window.onload = () => document.querySelector('.tab-btn').click();
 </script>
+
 </body>
 </html>
