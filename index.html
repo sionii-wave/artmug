@@ -1,118 +1,138 @@
-<style>
-    /* 기존 스타일 유지 및 신규 스타일 추가 */
-    .artmug-full-container { max-width: 850px; margin: 0 auto; font-family: 'Pretendard', sans-serif; color: #334155; line-height: 1.6; background-color: #fffdfb; padding: 20px; }
-    .profile-card { background: #fff; border: 1px solid #ffebdb; border-radius: 40px; padding: 40px 20px; text-align: center; margin-bottom: 30px; box-shadow: 0 10px 30px rgba(255,165,0,0.03); }
-    .profile-avatar { width: 100px; height: 100px; border-radius: 25px; margin-bottom: 15px; box-shadow: 0 4px 10px rgba(255,127,80,0.1); }
-    .profile-name { font-size: 28px; font-weight: 900; color: #ff7f50; margin: 0 0 10px 0; }
-    .profile-desc { font-size: 14px; color: #7f6a5b; margin-bottom: 25px; }
-    .tag-item { padding: 6px 18px; background: #fff; color: #ff9f43; border-radius: 20px; font-size: 13px; font-weight: bold; border: 1px solid #ffebdb; margin: 2px; display: inline-block; }
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>쇼니 커미션</title>
+    <style>
+        /* 1. 전체 레이아웃 */
+        body { background-color: #fffdfb; margin: 0; padding: 0; }
+        .container { max-width: 800px; margin: 0 auto; font-family: 'Pretendard', sans-serif; color: #334155; padding: 20px; box-sizing: border-box; }
 
-    .main-logo-img { width: 100%; border-radius: 30px; margin-bottom: 40px; }
-    .section-box { background: #fff; border: 1px solid #ffebdb; border-radius: 30px; padding: 35px; margin-bottom: 40px; }
-    .section-header { font-size: 20px; font-weight: 800; color: #4a3b31; margin-bottom: 25px; display: flex; align-items: center; }
-    .section-header::before { content: ''; width: 4px; height: 20px; background: #ff9f43; margin-right: 12px; border-radius: 2px; }
+        /* 2. 상단 로고 */
+        .main-logo { width: 100%; border-radius: 30px; margin-bottom: 25px; display: block; }
 
-    /* [신규] 개인작 안내 슬라이더 스타일 */
-    .slider-container { position: relative; width: 100%; background: #f8f9fa; border-radius: 20px; overflow: hidden; margin-bottom: 20px; border: 1px solid #eee; }
-    .slides { display: flex; transition: transform 0.5s ease-in-out; }
-    .slide-item { min-width: 100%; box-sizing: border-box; }
-    .slide-item img { width: 100%; display: block; border-radius: 20px; }
-    
-    .slider-btn { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(255,255,255,0.8); border: none; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; color: #ff9f43; font-weight: bold; z-index: 10; transition: 0.3s; }
-    .slider-btn:hover { background: #ff9f43; color: #fff; }
-    .prev-btn { left: 15px; }
-    .next-btn { right: 15px; }
+        /* 3. 작가 소개 섹션 */
+        .intro-box { background: #fff; border: 1px solid #ffebdb; border-radius: 30px; padding: 40px 20px; text-align: center; margin-bottom: 20px; box-shadow: 0 10px 30px rgba(255,165,0,0.03); }
+        .intro-title { font-size: 24px; font-weight: 900; color: #ff7f50; margin-bottom: 15px; }
+        .intro-text { font-size: 15px; color: #645143; line-height: 1.8; word-break: keep-all; }
 
-    .slider-dots { display: flex; justify-content: center; gap: 8px; margin-top: 15px; }
-    .dot { width: 8px; height: 8px; background: #ddd; border-radius: 50%; cursor: pointer; }
-    .dot.active { background: #ff9f43; width: 20px; border-radius: 4px; }
+        /* 4. 이벤트 공지 섹션 (단독 문구) */
+        .event-box { background: #fffaf5; border: 2px solid #ff9f43; border-radius: 25px; padding: 30px 20px; text-align: center; margin-bottom: 40px; position: relative; }
+        .event-text { font-size: 16px; font-weight: 700; color: #a05e2b; margin-bottom: 12px; line-height: 1.6; }
+        .event-price { font-size: 18px; font-weight: 800; color: #ff7f50; }
+        .price-old { text-decoration: line-through; color: #d0b8a8; font-size: 15px; margin-right: 8px; }
+        .event-badge { position: absolute; top: -15px; left: 50%; transform: translateX(-50%); background: #ff7f50; color: #fff; padding: 5px 15px; border-radius: 20px; font-size: 12px; font-weight: bold; }
 
-    /* [기존/수정] 계산기 및 공통 스타일 */
-    .calc-box { background: #fff; border: 1px solid #ffebdb; border-radius: 30px; overflow: hidden; box-shadow: 0 10px 40px rgba(255,165,0,0.02); }
-    .calc-page { display: none; padding: 40px 60px; }
-    .calc-page.active { display: block; }
-    .art-input { width: 100%; padding: 14px 18px; border: 1px solid #ffebdb; border-radius: 15px; background: #fffdfb; font-size: 15px; box-sizing: border-box; }
-    .opt-card { display: flex; justify-content: space-between; align-items: center; padding: 18px 25px; border: 1px solid #ffebdb; border-radius: 20px; margin-bottom: 15px; cursor: pointer; background: #fff; }
-    .btn-next { flex: 2; padding: 16px; background: #ff9f43; color: #fff; border: none; border-radius: 15px; font-weight: bold; cursor: pointer; }
-    .btn-prev { flex: 1; padding: 16px; background: #fff; color: #a18e80; border: 1px solid #ffebdb; border-radius: 15px; font-weight: bold; cursor: pointer; }
-</style>
+        /* 5. 필독사항 (아코디언) */
+        .section-header { font-size: 20px; font-weight: 800; color: #4a3b31; margin-bottom: 20px; display: flex; align-items: center; }
+        .section-header::before { content: ''; width: 4px; height: 20px; background: #ff9f43; margin-right: 12px; border-radius: 2px; }
 
-<div class="artmug-full-container">
-    <div class="profile-card">
-        <img src="아바타_원형_이미지_주소" class="profile-avatar">
-        <div class="profile-name">쇼니</div>
-        <div class="profile-desc">안녕하세요, 쇼니입니다!♡</div>
-    </div>
-    <img src="https://github.com/sionii-wave/artmug/blob/main/KakaoTalk_20260404_030131353.png?raw=true" class="main-logo-img">
-
-    <div class="section-box">
-        <div class="section-header">개인작 안내</div>
+        .acc-item { background: #fff; border: 1px solid #ffebdb; border-radius: 15px; margin-bottom: 12px; overflow: hidden; transition: 0.3s; }
+        .acc-item:hover { border-color: #ff9f43; }
+        .acc-input { display: none; }
+        .acc-header { display: flex; align-items: center; padding: 18px 25px; cursor: pointer; font-weight: 700; font-size: 15px; color: #4a3b31; background: #fff; }
+        .acc-icon { width: 30px; height: 30px; background: #fff0e1; border-radius: 8px; display: flex; justify-content: center; align-items: center; margin-right: 15px; color: #ff9f43; }
+        .acc-arrow { margin-left: auto; color: #ff9f43; transition: 0.3s; font-size: 12px; }
         
-        <div class="slider-container">
-            <button class="slider-btn prev-btn" onclick="moveSlide(-1)">❮</button>
-            <div class="slides" id="mainSlides">
-                <div class="slide-item"><img src="개인작_이미지1_주소"></div>
-                <div class="slide-item"><img src="개인작_이미지2_주소"></div>
-                <div class="slide-item"><img src="개인작_이미지3_주소"></div>
-            </div>
-            <button class="slider-btn next-btn" onclick="moveSlide(1)">❯</button>
-        </div>
-        <div class="slider-dots" id="slideDots">
-            <div class="dot active" onclick="currentSlide(0)"></div>
-            <div class="dot" onclick="currentSlide(1)"></div>
-            <div class="dot" onclick="currentSlide(2)"></div>
-        </div>
+        .acc-content { max-height: 0; overflow: hidden; transition: 0.3s ease-out; background: #fffdfb; }
+        .acc-body { padding: 20px 25px 30px 65px; font-size: 14px; color: #645143; line-height: 1.8; border-top: 1px solid #fff5eb; }
+        .acc-body b { color: #ff7f50; }
 
-        <div class="acc-item" style="margin-top:25px;">
-            <input type="checkbox" id="personal_notice" class="acc-input">
-            <label for="personal_notice" class="acc-header">
-                <div class="acc-icon">📋</div> 개인작 안내사항 (클릭해서 확인) <div class="acc-arrow">▼</div>
-            </label>
-            <div class="acc-content">
-                <div class="acc-body">
-                    · 모든 개인작은 <b>예약제</b>로 운영됩니다.<br>
-                    · 작업 착수 후에는 환불이 불가능하니 신중하게 결정해 주세요.<br>
-                    · 피드백은 총 2회 제공되며, 이후 추가 수정 시 비용이 발생합니다.
-                </div>
+        .acc-input:checked ~ .acc-content { max-height: 1000px; }
+        .acc-input:checked ~ .acc-header { background: #fffaf5; color: #ff7f50; }
+        .acc-input:checked ~ .acc-header .acc-arrow { transform: rotate(180deg); }
+
+        /* 리스트 스타일 */
+        .notice-list { margin: 0; padding: 0; list-style: none; }
+        .notice-list li { position: relative; padding-left: 15px; margin-bottom: 8px; }
+        .notice-list li::before { content: '·'; position: absolute; left: 0; font-weight: bold; color: #ff9f43; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <img src="https://github.com/sionii-wave/artmug/blob/main/KakaoTalk_20260404_030131353.png?raw=true" class="main-logo">
+
+    <div class="intro-box">
+        <div class="intro-title">작가 쇼니</div>
+        <div class="intro-text">
+            안녕하세요 작가 쇼니입니다<br>
+            의뢰자님의 취향에 딱 맞는 아바타를 만들 수 있도록 최선을 다 하겠습니다.<br>
+            편하게 문의 주세요. ♡◟( ˘ ³˘)◞ ♡
+        </div>
+    </div>
+
+    <div class="event-box">
+        <div class="event-badge">EVENT</div>
+        <div class="event-text">
+            포트폴리오 작업물 위해 이벤트 기간 동안 데뷔패키지 할인이 적용 됩니다<br>
+            ᰔ많은 문의 부탁드립니다.ᰔ
+        </div>
+        <div class="event-price">
+            데뷔패키지 <span class="price-old">300,000원</span> > 180,000원
+        </div>
+    </div>
+
+    <div class="section-header">필독사항</div>
+
+    <div class="acc-item">
+        <input type="checkbox" id="notice1" class="acc-input">
+        <label for="notice1" class="acc-header">
+            <div class="acc-icon">⚙️</div> 작업 관련 <span class="acc-arrow">▼</span>
+        </label>
+        <div class="acc-content">
+            <div class="acc-body">
+                <ul class="notice-list">
+                    <li>결제 전 꼭 <b>문의 먼저</b> 부탁드립니다. 모든 작업은 입금 순으로 진행됩니다. (개인작 동일 적용)</li>
+                    <li>작업 기간은 <b>최소 7일~14일</b>이 소요됩니다.</li>
+                    <li>컨펌 과정 중 사전 고지 없이 24시간 내에 답변이 없을 경우 작업 순서가 변경될 수 있습니다.</li>
+                    <li>모든 작업물은 포트폴리오로 사용될 수 있습니다. 사용을 원치 않으실 경우 <b>포트폴리오 비공개 옵션</b>을 선택해 주세요.</li>
+                    <li>모든 작업물의 보관 기간은 1개월입니다. 추후 작업이 필요 시 유니티패키지를 구매해 주세요.</li>
+                    <li>과한 컨셉(고어, 노출 등)의 작업물 또는 작가 역량 부족으로 판단될 시 작업이 거절될 수 있습니다.</li>
+                    <li>작업 진행 상황에 따른 환불 규정이 상이하니 환불 규정 꼭 확인해 주세요.</li>
+                </ul>
             </div>
         </div>
     </div>
 
-    <div class="section-header">신청양식 & 견적 계산기</div>
-    <div class="calc-box">
-        <div class="calc-page active" id="p1">
-             <button class="btn-next" onclick="move(2)">다음 →</button>
+    <div class="acc-item">
+        <input type="checkbox" id="notice2" class="acc-input">
+        <label for="notice2" class="acc-header">
+            <div class="acc-icon">🛒</div> BOOTH 관련 <span class="acc-arrow">▼</span>
+        </label>
+        <div class="acc-content">
+            <div class="acc-body">
+                <ul class="notice-list">
+                    <li>신청 전 사용하고자 하는 아바타 및 기타 아이템들의 <b>저작권 및 방송 송출 규정</b> 확인해 주세요.</li>
+                    <li>2차 가공, 배포, 저작권 및 방송 송출이 허용된 아이템만 작업 가능합니다.</li>
+                    <li>저작권 문제 발생 시 작가는 책임지지 않으며 해당 사유로 작업 후 환불은 불가합니다.</li>
+                    <li>아바타에 사용되는 booth 아이템은 <b>의뢰자와 작가 양측이 모두 보유</b>해야 합니다.</li>
+                    <li>작가가 보유하지 않은 아바타나 파츠를 사용할 경우 부스의 <b>'기프트'기능</b>을 통해 전달해 주셔야 합니다.</li>
+                    <li>기프트 보내시는 아바타와 아이템의 대응 여부, 방송 사용 가능 여부 등을 꼭 확인 부탁드립니다.</li>
+                    <li>보내주신 기프트는 수령 이후 환불 불가합니다.</li>
+                </ul>
+            </div>
         </div>
+    </div>
+
+    <div class="acc-item">
+        <input type="checkbox" id="notice3" class="acc-input">
+        <label for="notice3" class="acc-header">
+            <div class="acc-icon">✨</div> 작업물 관련 <span class="acc-arrow">▼</span>
+        </label>
+        <div class="acc-content">
+            <div class="acc-body">
+                <ul class="notice-list">
+                    <li>유니티패키지를 추가하지 않은 경우 <b>VSF파일</b>을 전달 드립니다.</li>
+                    <li>유니티패키지는 아바타와 관련된 것만 추출하며 실시간 그림자와 FBX는 포함되지 않습니다.</li>
+                    <li>타 작가님께 추가 작업을 맡기실 경우 사전에 말씀해 주시고 작업 부탁드립니다.</li>
+                </ul>
+            </div>
         </div>
+    </div>
+
 </div>
 
-<script>
-    /* 슬라이더 스크립트 */
-    let currentIdx = 0;
-    const slides = document.getElementById('mainSlides');
-    const dots = document.querySelectorAll('.dot');
-    const totalSlides = document.querySelectorAll('.slide-item').length;
-
-    function moveSlide(n) {
-        currentIdx = (currentIdx + n + totalSlides) % totalSlides;
-        updateSlider();
-    }
-
-    function currentSlide(n) {
-        currentIdx = n;
-        updateSlider();
-    }
-
-    function updateSlider() {
-        slides.style.transform = `translateX(-${currentIdx * 100}%)`;
-        dots.forEach((dot, index) => {
-            dot.classList.toggle('active', index === currentIdx);
-        });
-    }
-
-    /* 기존 계산기 함수 (move, render, copy 등 유지) */
-    function move(n) {
-        document.querySelectorAll('.calc-page').forEach(p => p.classList.remove('active'));
-        document.getElementById('p'+n).classList.add('active');
-    }
-</script>
+</body>
+</html>
