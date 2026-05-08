@@ -137,7 +137,7 @@
         </ul></div></div>
     </div>
 
-<div style="margin-top: 40px;">
+    <div style="margin-top: 40px;">
         <span class="header-tag">WORK PROCESS</span>
         <div class="section-header">💜 작업 진행 순서</div>
         <div class="process-box">
@@ -147,7 +147,8 @@
                 <span class="process-step">성형</span> <span class="process-arrow">❯</span>
                 <span class="process-step">컨펌 <span class="process-highlight">(최대 2회)</span></span> <span class="process-arrow">❯</span>
                 <span class="process-step">페이셜</span> <span class="process-arrow">❯</span>
-                <span class="process-step">컨펌 <span class="process-highlight">(최대 2회)</span></span> <br> <span class="process-arrow">❯</span> <span class="process-step">뚜따</span> <span class="process-arrow">❯</span>
+                <span class="process-step">컨펌 <span class="process-highlight">(최대 2회)</span></span> <span class="process-arrow">❯</span>
+                <span class="process-step">뚜따</span> <span class="process-arrow">❯</span>
                 <span class="process-step">컨펌 <span class="process-highlight">(최대 2회)</span></span> <span class="process-arrow">❯</span>
                 <span class="process-step">작업물 전달</span>
             </div>
@@ -205,9 +206,31 @@
             </div>
         </div>
     </div>
+
+    <div style="margin-top: 50px; margin-bottom: 50px;">
+        <span class="header-tag">PORTFOLIO</span>
+        <div class="section-header">💜 포트폴리오</div>
+        
+        <div class="tab-menu" id="pf-tab-menu">
+            <button class="tab-btn active" onclick="changePfTab('all', this)">전체</button>
+            <button class="tab-btn" onclick="changePfTab('personal', this)">개인작</button>
+            <button class="tab-btn" onclick="changePfTab('debut', this)">데뷔패키지</button>
+            <button class="tab-btn" onclick="changePfTab('facial', this)">페이셜</button>
+            <button class="tab-btn" onclick="changePfTab('boing', this)">뽀잉눈</button>
+            <button class="tab-btn" onclick="changePfTab('special', this)">특수표정</button>
+            <button class="tab-btn" onclick="changePfTab('ready', this)">준비중</button>
+        </div>
+
+        <div class="slider-wrap">
+            <button class="nav-btn prev" id="pf-prev" onclick="movePfImg(-1)">❮</button>
+            <div class="slider-track" id="pf-track"></div>
+            <button class="nav-btn next" id="pf-next" onclick="movePfImg(1)">❯</button>
+        </div>
+    </div>
 </div>
 
 <script>
+    /* 상단 슬라이더 데이터 */
     const data = {
         shinano: ["https://github.com/sionii-wave/artmug/blob/main/%EC%8B%9C%EB%82%98%EB%85%B8%EA%B0%9C%EC%9D%B8%EC%9E%917.jpg?raw=true"],
         airi: ["https://github.com/sionii-wave/artmug/blob/main/%EC%95%84%EC%9D%B4%EB%A6%AC%EA%B0%9C%EC%9D%B8%EC%9E%916.jpg?raw=true"],
@@ -219,7 +242,7 @@
     let imgIdx = 0;
 
     function changeTab(type, btn) {
-        document.querySelectorAll('.tab-menu .tab-btn').forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('.tab-menu:not(#pf-tab-menu) .tab-btn').forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
         const track = document.getElementById('track');
         track.innerHTML = ""; imgIdx = 0;
@@ -255,7 +278,68 @@
         videoTrack.style.transform = `translateX(-${videoIdx * 100}%)`;
     }
 
-    window.onload = () => document.querySelector('.tab-btn').click();
+    /* 포트폴리오 슬라이더 데이터 */
+    const pfData = {
+        personal: [
+            "https://github.com/sionii-wave/artmug/blob/main/%EC%8B%9C%EB%82%98%EB%85%B8%EA%B0%9C%EC%9D%B8%EC%9E%917.jpg?raw=true",
+            "https://github.com/sionii-wave/artmug/blob/main/%EC%8B%9C%EB%82%98%EB%85%B8%EA%B0%9C%EC%9D%B8%EC%9E%915.jpg?raw=true",
+            "https://github.com/sionii-wave/artmug/blob/main/%EC%8B%9C%EB%82%98%EB%85%B8%EA%B0%9C%EC%9D%B8%EC%9E%914.jpg?raw=true",
+            "https://github.com/sionii-wave/artmug/blob/main/%EC%8B%9C%EB%82%98%EB%85%B8%EA%B0%9C%EC%9D%B8%EC%9E%913.jpg?raw=true",
+            "https://github.com/sionii-wave/artmug/blob/main/%EC%8B%9C%EB%82%98%EB%85%B8%EA%B0%9C%EC%9D%B8%EC%9E%911.jpg?raw=true"
+        ],
+        debut: [
+            "https://github.com/sionii-wave/artmug/blob/main/%EB%AA%BD%ED%8B%B0%EB%8B%98.jpg?raw=true",
+            "https://github.com/sionii-wave/artmug/blob/main/%EC%9D%B4%EC%97%B0%EC%A7%80%EB%8B%A4%EB%8B%98.jpg?raw=true"
+        ],
+        facial: [], boing: [], special: [], ready: []
+    };
+
+    let currentPfImgs = [];
+    let pfImgIdx = 0;
+
+    function changePfTab(type, btn) {
+        document.querySelectorAll('#pf-tab-menu .tab-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const track = document.getElementById('pf-track');
+        track.innerHTML = ""; pfImgIdx = 0;
+
+        if (type === 'all') {
+            currentPfImgs = [...pfData.personal, ...pfData.debut];
+        } else {
+            currentPfImgs = pfData[type] || [];
+        }
+
+        if (currentPfImgs.length === 0) {
+            track.innerHTML = `<div class="ready-box">준비중입니다... ᰔ</div>`;
+            document.getElementById('pf-prev').style.display = 'none';
+            document.getElementById('pf-next').style.display = 'none';
+        } else {
+            currentPfImgs.forEach(src => {
+                const div = document.createElement('div');
+                div.className = 'slide-item';
+                div.innerHTML = `<img src="${src}">`;
+                track.appendChild(div);
+            });
+            const showBtn = currentPfImgs.length > 1 ? 'block' : 'none';
+            document.getElementById('pf-prev').style.display = showBtn;
+            document.getElementById('pf-next').style.display = showBtn;
+        }
+        track.style.transform = `translateX(0)`;
+    }
+
+    function movePfImg(n) {
+        if (currentPfImgs.length <= 1) return;
+        pfImgIdx = (pfImgIdx + n + currentPfImgs.length) % currentPfImgs.length;
+        document.getElementById('pf-track').style.transform = `translateX(-${pfImgIdx * 100}%)`;
+    }
+
+    window.onload = () => {
+        // 상단 개인작 초기화
+        document.querySelector('.tab-menu .tab-btn').click();
+        // 하단 포트폴리오 초기화
+        const pfFirstBtn = document.querySelector('#pf-tab-menu .tab-btn');
+        if(pfFirstBtn) pfFirstBtn.click();
+    };
 </script>
 </body>
 </html>
