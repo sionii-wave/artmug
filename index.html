@@ -236,17 +236,27 @@
         </div>
     </div>
 
-    <div style="margin-top: 50px;">
+<div style="margin-top: 50px;">
         <span class="header-tag">PERSONAL WORK FACIAL</span>
         <div class="section-header">💜 개인작 페이셜</div>
         <div class="slider-wrap">
             <button class="nav-btn prev" onclick="moveVideo(-1)">❮</button>
             <div class="slider-track" id="videoTrack">
+                <!-- 1. 기존 첫 번째 영상 -->
                 <div class="slide-item">
                     <div class="video-container">
                         <iframe src="https://www.youtube.com/embed/KvmnoJ9KHJY?rel=0&modestbranding=1" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                     </div>
                 </div>
+                
+                <!-- 2. 새로 추가하는 두 번째 영상 -->
+                <div class="slide-item">
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/xKwD-MahM4U?rel=0&modestbranding=1" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                </div>
+
+                <!-- 3. 기존 준비중 상자 (세 번째로 밀려남) -->
                 <div class="slide-item">
                     <div class="ready-box">준비중입니다... ᰔ</div>
                 </div>
