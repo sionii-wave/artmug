@@ -524,6 +524,47 @@
     let currentPfImgs = [];
     let pfImgIdx = 0;
 
+/* 1. 개인작 슬라이더 탭 변경 함수 (새로 수정한 코드) */
+    function changeTab(type, btn) {
+        document.querySelectorAll('.tab-menu:not(#pf-tab-menu) .tab-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        const track = document.getElementById('track');
+        track.innerHTML = ""; 
+        imgIdx = 0;
+
+        if (type === 'all') {
+            currentImgs = [
+                ...(data.shinano || []), 
+                ...(data.airi || []), 
+                ...(data.miltina || []), 
+                ...(data.ready || [])
+            ];
+        } else {
+            currentImgs = data[type] || [];
+        }
+
+        if (currentImgs.length === 0) {
+            track.innerHTML = `<div class="ready-box">준비중입니다... ᰔ</div>`;
+            const navBtns = btn.closest('.tab-menu').nextElementSibling.querySelectorAll('.nav-btn');
+            navBtns.forEach(nav => nav.style.display = 'none');
+        } else {
+            currentImgs.forEach(src => {
+                const div = document.createElement('div'); 
+                div.className = 'slide-item';
+                div.innerHTML = `<img src="${src}" style="cursor:pointer; width:100%;" onclick="openModal('${src}')">`; 
+                track.appendChild(div);
+            });
+
+            const navBtns = btn.closest('.tab-menu').nextElementSibling.querySelectorAll('.nav-btn');
+            const showNav = currentImgs.length > 1 ? 'block' : 'none';
+            navBtns.forEach(nav => nav.style.display = showNav);
+        }
+
+        track.style.transform = `translateX(0)`;
+    }
+
+    /* 2. 포트폴리오 슬라이더 탭 변경 함수 (기존에 보내주신 코드) */
     function changePfTab(type, btn) {
         document.querySelectorAll('#pf-tab-menu .tab-btn').forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
@@ -579,7 +620,6 @@
         pfImgIdx = (pfImgIdx + n + currentPfImgs.length) % currentPfImgs.length;
         document.getElementById('pf-track').style.transform = `translateX(-${pfImgIdx * 100}%)`;
     }
-
     /* 2. 견적 계산기 및 필수입력 로직 */
     function checkNameInput() {
         const nameVal = document.getElementById('f_name').value.trim();
